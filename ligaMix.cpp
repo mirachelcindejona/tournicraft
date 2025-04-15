@@ -194,7 +194,7 @@ void tampilkanPemenang() {
     
     cout << "\n****************************************\n";
     if (adaJuaraBersama) {
-        cout << "JUARA BERSAMA:\n";
+        cout << "URUTAN PEMENANG:\n";
         int i = 0;
         while (i < jumlahTim - 1 && tim[i].poin == tim[i + 1].poin && tim[i].menang == tim[i + 1].menang) {
             cout << "- " << tim[i].nama << endl;
