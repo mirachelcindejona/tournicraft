@@ -19,13 +19,13 @@ const string USERS_FILE = "data/operators.json";
 
 // Fungsi untuk menghasilkan hash dari password
 string hashPassword(const string& password) {
-    hash<string> hasher;
-    size_t hashValue = hasher(password);
-    
-    // Konversi hash ke string hexadecimal
-    stringstream ss;
-    ss << hex << setw(16) << setfill('0') << hashValue;
-    return ss.str();
+   hash<string> hasher;
+   size_t hashValue = hasher(password);
+   
+   // Konversi hash ke string hexadecimal
+   stringstream ss;
+   ss << hex << setw(16) << setfill('0') << hashValue;
+   return ss.str();
 }
 
 json loadOperators() {
