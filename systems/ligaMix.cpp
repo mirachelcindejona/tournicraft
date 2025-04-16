@@ -2,9 +2,13 @@
 #include <iomanip>
 #include <string>
 #include <algorithm>
+#include <fstream>
+#include <sstream>
+#include "nlohmann/json.hpp"
 using namespace std;
+using json = nlohmann::json;
 
-const int MAX_TIM = 20;
+const string TURNAMEN_FILE = "data/turnamen.json";
 
 struct Tim {
     string nama;
@@ -21,20 +25,58 @@ struct Pertandingan {
     bool sudahDimainkan = false;
 };
 
-Tim tim[MAX_TIM];
-Pertandingan jadwal[MAX_TIM * (MAX_TIM - 1)];
+vector<Tim> tim;
+vector<Pertandingan> jadwal;
 int jumlahTim, jumlahHari, jumlahMatch = 0;
 int jenisOlahraga;
+string namaTurnamen;
+
+json loadTurnamen() {
+    ifstream inFile(TURNAMEN_FILE);
+    if (!inFile) return json::array(); // jika file tidak ada, return array kosong
+    json data;
+    inFile >> data;
+    return data;
+}
+
+void saveTurnamen(const json& data) {
+    ofstream outFile(TURNAMEN_FILE);
+    outFile << data.dump(4); // pretty print
+}
+
+bool loadTurnamenData() {
+    json turnamenData = loadTurnamen();
+    
+    if (turnamenData.empty()) {
+        cout << "Tidak ada data turnamen yang tersimpan.\n";
+        return false;
+    }
+    
+    // Ambil turnamen terakhir yang dibuat
+    json lastTurnamen = turnamenData[turnamenData.size() - 1];
+    
+    // Periksa apakah sistem pertandingan adalah "Liga"
+    if (lastTurnamen.contains("sistem") && lastTurnamen["sistem"] != "Liga") {
+        cout << "Sistem pertandingan bukan Liga. Program tidak dapat dijalankan.\n";
+        return false;
+    }
+    
+    // Load data turnamen
+    namaTurnamen = lastTurnamen["nama"];
+    jenisOlahraga = lastTurnamen["jenisOlahraga"];
+    jumlahTim = lastTurnamen["jumlahTim"];
+    jumlahHari = lastTurnamen["jumlahHari"];
+    
+    cout << "Turnamen " << namaTurnamen << " berhasil dimuat!\n";
+    cout << "Cabang Olahraga: " << jenisOlahraga << "\n";
+    cout << "Jumlah Tim: " << jumlahTim << "\n";
+    cout << "Jumlah Hari: " << jumlahHari << "\n";
+    
+    return true;
+}
 
 void inputDataTim() {
-    do {
-        cout << "Masukkan jumlah tim (maks " << MAX_TIM << "): ";
-        cin >> jumlahTim;
-        if (jumlahTim < 2 || jumlahTim > MAX_TIM) {
-            cout << "Jumlah tim harus antara 2 sampai " << MAX_TIM << "!\n";
-        }
-    } while (jumlahTim < 2 || jumlahTim > MAX_TIM);
-
+    tim.resize(jumlahTim);
     cin.ignore(); // Bersihkan newline sebelum getline
     for (int i = 0; i < jumlahTim; i++) {
         cout << "Nama tim ke-" << i + 1 << ": ";
@@ -45,7 +87,8 @@ void inputDataTim() {
 void buatJadwalSingleRoundRobin() {
     for (int i = 0; i < jumlahTim - 1; i++) {
         for (int j = i + 1; j < jumlahTim; j++) {
-            jadwal[jumlahMatch++] = {i, j, 0, 0, false};
+            jadwal.push_back({i, j, 0, 0, false});
+            jumlahMatch++;
         }
     }
 }
@@ -53,8 +96,9 @@ void buatJadwalSingleRoundRobin() {
 void buatJadwalDoubleRoundRobin() {
     for (int i = 0; i < jumlahTim - 1; i++) {
         for (int j = i + 1; j < jumlahTim; j++) {
-            jadwal[jumlahMatch++] = {i, j, 0, 0, false};
-            jadwal[jumlahMatch++] = {j, i, 0, 0, false};
+            jadwal.push_back({i, j, 0, 0, false});
+            jadwal.push_back({j, i, 0, 0, false});
+            jumlahMatch += 2;
         }
     }
 }
@@ -164,7 +208,7 @@ void inputSkorHari(int hari) {
 }
 
 void urutkanKlasemen() {
-    sort(tim, tim + jumlahTim, [](const Tim &a, const Tim &b) {
+    sort(tim.begin(), tim.end(), [](const Tim &a, const Tim &b) {
         if (a.poin != b.poin)
             return a.poin > b.poin;
         else
@@ -209,16 +253,88 @@ void tampilkanPemenang() {
     cout << "****************************************\n";
 }
 
+void simpanTurnamen() {
+    json turnamenData = loadTurnamen();
+    
+    // Buat data tim
+    json timData = json::array();
+    for (int i = 0; i < jumlahTim; i++) {
+        json timObj = {
+            {"nama", tim[i].nama},
+            {"main", tim[i].main},
+            {"menang", tim[i].menang},
+            {"seri", tim[i].seri},
+            {"kalah", tim[i].kalah},
+            {"poin", tim[i].poin}
+        };
+        timData.push_back(timObj);
+    }
+    
+    // Buat data pertandingan
+    json jadwalData = json::array();
+    for (int i = 0; i < jumlahMatch; i++) {
+        json matchObj = {
+            {"tim1", jadwal[i].tim1},
+            {"tim2", jadwal[i].tim2},
+            {"skor1", jadwal[i].skor1},
+            {"skor2", jadwal[i].skor2},
+            {"sudahDimainkan", jadwal[i].sudahDimainkan}
+        };
+        jadwalData.push_back(matchObj);
+    }
+    
+    // Buat objek turnamen
+    string formatTurnamen = (jenisOlahraga == 1 || jenisOlahraga == 2 || jenisOlahraga == 5) ? 
+                           "Single/Double Round Robin" : 
+                           ((jenisOlahraga == 3) ? "Double Round Robin" : "Single Round Robin");
+    
+    // Update turnamen yang sudah ada
+    for (auto& turnamen : turnamenData) {
+        if (turnamen["nama"] == namaTurnamen) {
+            turnamen["tim"] = timData;
+            turnamen["jadwal"] = jadwalData;
+            turnamen["jumlahMatch"] = jumlahMatch;
+            turnamen["format"] = formatTurnamen;
+            saveTurnamen(turnamenData);
+            cout << "\nTurnamen " << namaTurnamen << " berhasil diperbarui!\n";
+            return;
+        }
+    }
+    
+    // Jika tidak ditemukan, buat turnamen baru
+    json turnamenObj = {
+        {"nama", namaTurnamen},
+        {"jenisOlahraga", jenisOlahraga},
+        {"jumlahTim", jumlahTim},
+        {"jumlahHari", jumlahHari},
+        {"jumlahMatch", jumlahMatch},
+        {"format", formatTurnamen},
+        {"sistem", "Liga"},
+        {"tim", timData},
+        {"jadwal", jadwalData}
+    };
+    
+    turnamenData.push_back(turnamenObj);
+    saveTurnamen(turnamenData);
+    
+    cout << "\nTurnamen " << namaTurnamen << " berhasil disimpan!\n";
+}
+
 int main() {
-    cout << "Pilih jenis olahraga:\n";
-    cout << "1. Sepak Bola\n2. Futsal\n3. Handball\n4. Tenis Meja\n5. Voli\n6. Badminton\n";
-    cout << "Masukkan pilihan (1-6): ";
-    cin >> jenisOlahraga;
-
+    cout << "\n=== SISTEM LIGA ===\n";
+    
+    // Load data turnamen dari file
+    if (!loadTurnamenData()) {
+        return 1; // Keluar jika tidak ada data turnamen atau bukan sistem Liga
+    }
+    
+    // Verifikasi jenis olahraga yang valid untuk sistem liga (1-6)
+    if (jenisOlahraga < 1 || jenisOlahraga > 6) {
+        cout << "Jenis olahraga tidak mendukung sistem liga. Hanya cabang 1-6 yang dapat menggunakan sistem liga.\n";
+        return 1;
+    }
+    
     inputDataTim();
-
-    cout << "Masukkan jumlah hari pertandingan: ";
-    cin >> jumlahHari;
 
     if (jenisOlahraga == 1 || jenisOlahraga == 2 || jenisOlahraga == 5) {
         cout << "Pilih format pertandingan:\n";
@@ -259,6 +375,9 @@ int main() {
     cout << "\n=== Klasemen Akhir ===\n";
     tampilkanKlasemen();
     tampilkanPemenang();
+    
+    // Simpan data turnamen ke JSON
+    simpanTurnamen();
 
     return 0;
 }
