@@ -208,38 +208,28 @@ void generateMatchesLL(const vector<Team *> &teamList, int day, const string &br
     displayScheduleForDay(day);
 }
 
-// Proses satu pertandingan: sebelum input skor/set, tanyakan apakah ingin menginput skor/set.
-// Jika tidak, default: tim pertama menang 1-0.
 void processMatch(Match &m, const string &sport)
 {
     bool isSet = isSetBasedSport(sport);
-    char choice;
-    cout << "\nApakah ingin menginput skor/set untuk pertandingan ["
-         << m.bracket << "] Hari " << m.day << " (" << m.team1->name
-         << " vs " << m.team2->name << ")? (y/n): ";
-    cin >> choice;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-    if (choice == 'y' || choice == 'Y')
+    int score1, score2;
+    while (true)
     {
-        while (true)
+        cout << "\n[" << m.bracket << "] Hari " << m.day << " - "
+             << m.team1->name << " vs " << m.team2->name << "\n";
+        score1 = inputScore(m.team1->name, isSet);
+        score2 = inputScore(m.team2->name, isSet);
+        if (score1 == score2)
         {
-            m.score1 = inputScore(m.team1->name, isSet);
-            m.score2 = inputScore(m.team2->name, isSet);
-            if (m.score1 == m.score2)
-                cout << "  Hasil tidak boleh seri. Ulangi input.\n";
-            else
-                break;
+            cout << "  Hasil tidak boleh seri. Ulangi input.\n";
+        }
+        else
+        {
+            break;
         }
     }
-    else
-    {
-        cout << "  Tidak menginput skor. Hasil default: " << m.team1->name << " menang 1-0.\n";
-        m.score1 = 1;
-        m.score2 = 0;
-    }
-
-    if (m.score1 > m.score2)
+    m.score1 = score1;
+    m.score2 = score2;
+    if (score1 > score2)
     {
         m.winner = m.team1;
         m.loser = m.team2;
@@ -249,7 +239,7 @@ void processMatch(Match &m, const string &sport)
         m.winner = m.team2;
         m.loser = m.team1;
     }
-    m.loser->losses++;
+    m.loser->losses++; // Tambahkan kekalahan untuk tim yang kalah.
     m.played = true;
 }
 
