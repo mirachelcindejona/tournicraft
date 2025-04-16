@@ -1,27 +1,13 @@
 #include "systems/ligaMix.h"
 #include <fstream>
 #include <sstream>
+#include "systems/storage.h"
 
-const string TURNAMEN_FILE = "data/turnamen.json";
-
-vector<Tim> tim;
-vector<Pertandingan> jadwal;
+vector<TimLiga> tim;
+vector<PertandinganLiga> jadwal;
 int jumlahTim, jumlahHari, jumlahMatch = 0;
 int jenisOlahraga;
 string namaTurnamen;
-
-json loadTurnamen() {
-    ifstream inFile(TURNAMEN_FILE);
-    if (!inFile) return json::array(); // jika file tidak ada, return array kosong
-    json data;
-    inFile >> data;
-    return data;
-}
-
-void saveTurnamen(const json& data) {
-    ofstream outFile(TURNAMEN_FILE);
-    outFile << data.dump(4); // pretty print
-}
 
 bool loadTurnamenData() {
     json turnamenData = loadTurnamen();
@@ -58,7 +44,7 @@ void inputDataTim() {
     tim.resize(jumlahTim);
     cin.ignore(); // Bersihkan newline sebelum getline
     for (int i = 0; i < jumlahTim; i++) {
-        cout << "Nama tim ke-" << i + 1 << ": ";
+        cout << "\nNama tim ke-" << i + 1 << ": ";
         getline(cin, tim[i].nama);
     }
 }
@@ -112,7 +98,7 @@ void inputSkorHari(int hari) {
     
     cout << "\n=== Input Skor Pertandingan Hari " << hari << " ===\n";
     for (int i = startIdx; i < startIdx + matchHariIni && i < jumlahMatch; i++) {
-        cout << tim[jadwal[i].tim1].nama << " vs " << tim[jadwal[i].tim2].nama << "\n";
+        cout << "\n" << tim[jadwal[i].tim1].nama << " vs " << tim[jadwal[i].tim2].nama << "\n";
         cout << "Skor " << tim[jadwal[i].tim1].nama << ": ";
         cin >> jadwal[i].skor1;
         cout << "Skor " << tim[jadwal[i].tim2].nama << ": ";
@@ -187,7 +173,7 @@ void inputSkorHari(int hari) {
 }
 
 void urutkanKlasemen() {
-    sort(tim.begin(), tim.end(), [](const Tim &a, const Tim &b) {
+    sort(tim.begin(), tim.end(), [](const TimLiga &a, const TimLiga &b) {
         if (a.poin != b.poin)
             return a.poin > b.poin;
         else
@@ -217,7 +203,7 @@ void tampilkanPemenang() {
     
     cout << "\n****************************************\n";
     if (adaJuaraBersama) {
-        cout << "URUTAN PEMENANG:\n";
+        cout << "JUARA BERSAMA:\n";
         int i = 0;
         while (i < jumlahTim - 1 && tim[i].poin == tim[i + 1].poin && tim[i].menang == tim[i + 1].menang) {
             cout << "- " << tim[i].nama << endl;
@@ -316,8 +302,8 @@ void sistemLiga() {
     inputDataTim();
 
     if (jenisOlahraga == 1 || jenisOlahraga == 2 || jenisOlahraga == 5) {
-        cout << "1. Single Round Robin\n2. Double Round Robin\n";
-        cout << "Pilih format pertandingan:\n";
+        cout << "\n1. Single Round Robin\n2. Double Round Robin\n";
+        cout << "Pilih format pertandingan (1/2): ";
         int format;
         cin >> format;
         if (format == 1) buatJadwalSingleRoundRobin();
@@ -330,25 +316,14 @@ void sistemLiga() {
 
     tampilkanJadwalPertandingan();
     
-    char inputSkor;
-    cout << "\nApakah ingin menginput skor pertandingan? (y/n): ";
-    cin >> inputSkor;
+    // char inputSkor;
+    // cout << "\nApakah ingin menginput skor pertandingan? (y/n): ";
+    // cin >> inputSkor;
     
-    if (inputSkor == 'y' || inputSkor == 'Y') {
-        for (int hari = 1; hari <= jumlahHari; hari++) {
-            inputSkorHari(hari);
-            cout << "\n=== Klasemen Sementara ===\n";
-            tampilkanKlasemen();
-            
-            if (hari < jumlahHari) {
-                char lanjut;
-                cout << "\nApakah ingin menginput skor hari ke-" << hari + 1 << "? (y/n): ";
-                cin >> lanjut;
-                if (lanjut != 'y' && lanjut != 'Y') {
-                    break;
-                }
-            }
-        }
+    for (int hari = 1; hari <= jumlahHari; hari++) {
+        inputSkorHari(hari);
+        cout << "\n=== Klasemen Sementara ===\n";
+        tampilkanKlasemen();
     }
 
     cout << "\n=== Klasemen Akhir ===\n";

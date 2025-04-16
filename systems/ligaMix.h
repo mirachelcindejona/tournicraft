@@ -12,7 +12,7 @@ using namespace std;
 using json = nlohmann::json;
 
 // Struktur data untuk tim
-struct Tim {
+struct TimLiga {
     string nama;
     int main = 0;
     int menang = 0;
@@ -22,15 +22,13 @@ struct Tim {
 };
 
 // Struktur data untuk pertandingan
-struct Pertandingan {
+struct PertandinganLiga {
     int tim1, tim2;
     int skor1, skor2;
     bool sudahDimainkan = false;
 };
 
 // Fungsi-fungsi untuk sistem liga
-json loadTurnamen();
-void saveTurnamen(const json& data);
 bool loadTurnamenData();
 void inputDataTim();
 void buatJadwalSingleRoundRobin();

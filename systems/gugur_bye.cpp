@@ -1,22 +1,8 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <queue>
+#include "systems/gugur_bye.h"
+#include "systems/storage.h"
 
 using namespace std;
-
-struct Tim {
-    string nama;
-    int skor;
-    bool isBye;
-};
-
-struct Pertandingan {
-    Tim tim1;
-    Tim tim2;
-    bool isBye;
-    string deskripsi;
-};
+using json = nlohmann::json;
 
 // Fungsi untuk menghitung power of two terdekat (lebih besar dan lebih kecil)
 int nextPowerOfTwo(int n) {
@@ -35,26 +21,27 @@ int previousPowerOfTwo(int n) {
     return power;
 }
 
-int main() {
-    // Pilihan olahraga
-    cout << "=== Sistem Gugur Bye ===\n";
-    cout << "Pilih jenis pertandingan:\n";
-    cout << "1. Sepak Bola\n";
-    cout << "2. Futsal\n";
-    cout << "3. Badminton\n";
-    cout << "4. Tennis\n";
-    cout << "5. Volly\n";
-    cout << "6. Taekwondo\n";
-    cout << "7. Basket\n";
-    cout << "Pilihan: ";
+int gugurBye() {
+    cout << "\n=== Sistem Gugur Bye ===\n";
     
-    int pilihanOlahraga;
-    cin >> pilihanOlahraga;
+    // Ambil data turnamen terakhir yang dibuat
+    json turnamenData = loadTurnamen();
+    if (turnamenData.empty()) {
+        cout << "Tidak ada data turnamen. Silakan buat turnamen terlebih dahulu.\n";
+        return 0;
+    }
+    
+    json turnamenTerakhir = turnamenData.back();
+    
+    string namaTurnamen = turnamenTerakhir["nama"];
+    int jenisOlahraga = turnamenTerakhir["jenisOlahraga"];
+    int jumlahTim = turnamenTerakhir["jumlahTim"];
+    int jumlahHari = turnamenTerakhir["jumlahHari"];
     
     string namaOlahraga;
     bool isPeserta = false;
     
-    switch(pilihanOlahraga) {
+    switch(jenisOlahraga) {
         case 1:
             namaOlahraga = "Sepak Bola";
             break;
@@ -78,39 +65,29 @@ int main() {
             namaOlahraga = "Basket";
             break;
         default:
-            cout << "Pilihan tidak valid.\n";
-            return 0;
+            namaOlahraga = "Olahraga Lainnya";
+            break;
     }
     
-    cout << "\nAnda memilih olahraga: " << namaOlahraga << endl;
-    
-    int jumlahTim;
-    string label = isPeserta ? "peserta" : "tim";
-    
-    cout << "Masukkan jumlah " << label << " (minimal 3): ";
-    cin >> jumlahTim;
+    cout << "\nTurnamen: " << namaTurnamen << endl;
+    cout << "Olahraga: " << namaOlahraga << endl;
+    cout << "Jumlah Tim: " << jumlahTim << endl;
+    cout << "Jumlah Hari: " << jumlahHari << endl;
 
     if (jumlahTim < 3) {
-        cout << "Jumlah " << label << " minimal harus 3.\n";
+        cout << "Jumlah tim minimal harus 3 untuk sistem gugur bye.\n";
         return 0;
     }
 
-    vector<Tim> tim(jumlahTim);
+    string label = isPeserta ? "peserta" : "tim";
+    vector<TimBye> tim(jumlahTim);
+    
+    // Input nama tim
     for (int i = 0; i < jumlahTim; i++) {
-        cout << "Nama " << label << " ke-" << i + 1 << ": ";
+        cout << "\nNama " << label << " ke-" << i + 1 << ": ";
         cin >> tim[i].nama;
         tim[i].skor = 0;
         tim[i].isBye = false;
-    }
-
-    // Input jumlah hari pertandingan
-    int hari;
-    cout << "\nMasukkan jumlah hari pertandingan: ";
-    cin >> hari;
-
-    if (hari <= 0) {
-        cout << "Jumlah hari tidak valid.\n";
-        return 0;
     }
 
     // Cek apakah jumlah tim ganjil, jika ya maka ada tim yang mendapat BYE
@@ -124,11 +101,11 @@ int main() {
     }
 
     // Buat jadwal pertandingan
-    vector<vector<Pertandingan>> jadwalHari(hari);
+    vector<vector<PertandinganBye>> jadwalHari(jumlahHari);
     
     // Menyimpan tim dalam dua antrian - antrian pertandingan reguler dan antrian bye
-    queue<Tim> antrianPertandingan;
-    queue<Tim> antrianBye;
+    queue<TimBye> antrianPertandingan;
+    queue<TimBye> antrianBye;
     
     // Memasukkan semua tim ke antrian sesuai status BYE
     for (int i = 0; i < jumlahTim; i++) {
@@ -148,35 +125,41 @@ int main() {
     }
 
     // Distribusikan pertandingan per hari
-    int pertandinganPerHari = totalPertandingan / hari;
-    int sisaPertandingan = totalPertandingan % hari;
+    int pertandinganPerHari = totalPertandingan / jumlahHari;
+    int sisaPertandingan = totalPertandingan % jumlahHari;
 
     // Membuat jadwal awal
     cout << "\n=== Jadwal Pertandingan " << namaOlahraga << " ===\n";
     
     // Buat semua pertandingan reguler terlebih dahulu
-    vector<Pertandingan> semuaPertandingan;
+    vector<PertandinganBye> semuaPertandingan;
     
     // Pertandingan babak pertama
     while (antrianPertandingan.size() >= 2) {
-        Pertandingan p;
+        PertandinganBye p;
         p.tim1 = antrianPertandingan.front();
         antrianPertandingan.pop();
         p.tim2 = antrianPertandingan.front();
         antrianPertandingan.pop();
         p.isBye = false;
         p.deskripsi = p.tim1.nama + " vs " + p.tim2.nama;
+        p.sudahDimainkan = false;
+        p.skor1 = 0;
+        p.skor2 = 0;
         semuaPertandingan.push_back(p);
     }
 
     // Jika ada sisa tim tanpa lawan (tidak termasuk tim BYE)
     if (antrianPertandingan.size() == 1) {
-        Pertandingan p;
+        PertandinganBye p;
         p.tim1 = antrianPertandingan.front();
         antrianPertandingan.pop();
-        p.tim2 = Tim{"-", 0, false}; // Placeholder
+        p.tim2 = TimBye{"-", 0, false}; // Placeholder
         p.isBye = true;
         p.deskripsi = p.tim1.nama + " mendapatkan BYE tambahan";
+        p.sudahDimainkan = true;
+        p.skor1 = 1;
+        p.skor2 = 0;
         semuaPertandingan.push_back(p);
     }
 
@@ -190,15 +173,16 @@ int main() {
     // Distribusikan semua pertandingan ke dalam hari-hari
     int hariIdx = 0;
     int pertandinganCounter = 0;
+    int jumlahMatch = semuaPertandingan.size();
 
-    for (const Pertandingan& p : semuaPertandingan) {
+    for (const PertandinganBye& p : semuaPertandingan) {
         // Jika sudah mencapai batas pertandingan per hari, pindah ke hari berikutnya
         if (pertandinganCounter >= pertandinganPerHari + (hariIdx < sisaPertandingan ? 1 : 0)) {
             hariIdx++;
             pertandinganCounter = 0;
             
             // Jika sudah melebihi jumlah hari yang diinput, berhenti
-            if (hariIdx >= hari) {
+            if (hariIdx >= jumlahHari) {
                 break;
             }
         }
@@ -208,20 +192,20 @@ int main() {
     }
 
     // Tampilkan jadwal per hari
-    for (int i = 0; i < hari; i++) {
+    for (int i = 0; i < jumlahHari; i++) {
         cout << "\nHari " << (i + 1) << ":\n";
         if (jadwalHari[i].empty()) {
             cout << "Tidak ada pertandingan.\n";
         } else {
-            for (const Pertandingan& p : jadwalHari[i]) {
+            for (const PertandinganBye& p : jadwalHari[i]) {
                 cout << p.deskripsi << endl;
             }
         }
     }
 
     // Reset antrian untuk simulasi pertandingan
-    antrianPertandingan = queue<Tim>();
-    antrianBye = queue<Tim>();
+    antrianPertandingan = queue<TimBye>();
+    antrianBye = queue<TimBye>();
     
     // Memasukkan semua tim ke antrian sesuai status BYE
     for (int i = 0; i < jumlahTim; i++) {
@@ -235,7 +219,7 @@ int main() {
     // Simulasi pertandingan babak per babak
     int babak = 1;
     bool pertandinganDenganBye = false;
-    queue<Tim> antrianBerikutnya;
+    queue<TimBye> antrianBerikutnya;
     
     cout << "\n=== Simulasi Pertandingan ===\n";
     cout << "\n== Babak " << babak << " ==\n";
@@ -257,9 +241,9 @@ int main() {
         
         // Pertandingan reguler antara dua tim
         if (antrianPertandingan.size() >= 2) {
-            Tim tim1 = antrianPertandingan.front();
+            TimBye tim1 = antrianPertandingan.front();
             antrianPertandingan.pop();
-            Tim tim2 = antrianPertandingan.front();
+            TimBye tim2 = antrianPertandingan.front();
             antrianPertandingan.pop();
             
             cout << "Pertandingan: " << tim1.nama << " vs " << tim2.nama << endl;
@@ -270,15 +254,15 @@ int main() {
             cin >> skor2;
             
             // Tentukan pemenang
-            Tim pemenang;
+            TimBye pemenang;
             if (skor1 > skor2) {
                 pemenang = tim1;
                 pemenang.skor = skor1;
-                cout << tim1.nama << " menang dengan skor " << skor1 << "-" << skor2 << endl;
+                cout << "\n" << tim1.nama << " menang dengan skor " << skor1 << "-" << skor2 << endl;
             } else {
                 pemenang = tim2;
                 pemenang.skor = skor2;
-                cout << tim2.nama << " menang dengan skor " << skor2 << "-" << skor1 << endl;
+                cout << "\n" << tim2.nama << " menang dengan skor " << skor2 << "-" << skor1 << endl;
             }
             
             // Jika ini pertandingan pertama dan ada tim BYE, pemenang melawan tim BYE
@@ -293,9 +277,9 @@ int main() {
         } 
         // Pertandingan dengan tim BYE
         else if (!antrianBye.empty() && pertandinganDenganBye && !antrianBerikutnya.empty()) {
-            Tim timDenganBye = antrianBye.front();
+            TimBye timDenganBye = antrianBye.front();
             antrianBye.pop();
-            Tim lawan = antrianBerikutnya.front();
+            TimBye lawan = antrianBerikutnya.front();
             antrianBerikutnya.pop();
             
             cout << "\nPertandingan: " << lawan.nama << " vs " << timDenganBye.nama << " (BYE)" << endl;
@@ -306,7 +290,7 @@ int main() {
             cin >> skor2;
             
             // Tentukan pemenang
-            Tim pemenang;
+            TimBye pemenang;
             if (skor1 > skor2) {
                 pemenang = lawan;
                 pemenang.skor = skor1;
@@ -342,6 +326,47 @@ int main() {
             cout << "Tim pemenang: " << antrianBerikutnya.front().nama << endl;
         }
     }
+
+    // Buat data tim
+    json timData = json::array();
+    for (int i = 0; i < jumlahTim; i++) {
+        json timObj = {
+            {"nama", tim[i].nama},
+            {"isBye", tim[i].isBye},
+            {"skor", tim[i].skor}
+        };
+        timData.push_back(timObj);
+    }
+    
+    // Buat data pertandingan
+    json jadwalData = json::array();
+    for (int i = 0; i < jumlahHari; i++) {
+        for (const auto& match : jadwalHari[i]) {
+            json matchObj = {
+                {"tim1", match.tim1.nama},
+                {"tim2", match.tim2.nama},
+                {"skor1", match.skor1},
+                {"skor2", match.skor2},
+                {"isBye", match.isBye},
+                {"deskripsi", match.deskripsi},
+                {"sudahDimainkan", match.sudahDimainkan},
+                {"hari", i + 1}
+            };
+            jadwalData.push_back(matchObj);
+        }
+    }
+    
+    // Update objek turnamen terakhir
+    turnamenTerakhir["jumlahMatch"] = jumlahMatch;
+    turnamenTerakhir["sistem"] = "Gugur Bye";
+    turnamenTerakhir["tim"] = timData;
+    turnamenTerakhir["jadwal"] = jadwalData;
+    
+    // Update data turnamen
+    turnamenData.back() = turnamenTerakhir;
+    saveTurnamen(turnamenData);
+    
+    cout << "\nTurnamen " << namaTurnamen << " berhasil disimpan!\n";
 
     return 0;
 }

@@ -6,6 +6,9 @@
 #include <cstdlib>
 #include "nlohmann/json.hpp"
 #include "systems/ligaMix.h"
+#include "systems/storage.h"
+#include "systems/gugur_bye.h"
+#include "systems/sistemGugur.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -110,7 +113,7 @@ void buatTurnamenBaru() {
       
       // Pilih sistem pertandingan
       int pilihanSistem;
-      cout << "Pilih sistem pertandingan (1-" << sistemTersedia.size() << "): ";
+      cout << "Pilih sistem pertandingan (input nomor): ";
       cin >> pilihanSistem;
       
       if (pilihanSistem < 1 || pilihanSistem > sistemTersedia.size()) {
@@ -157,5 +160,9 @@ void buatTurnamenBaru() {
       // Jalankan ligaMix.cpp jika sistem yang dipilih adalah Liga
       if (sistemTerpilih == "Liga") {
           sistemLiga();
+      } else if (sistemTerpilih == "Gugur Bye")  {
+         gugurBye();
+      } else if (sistemTerpilih == "Knockout") {
+         sistemGugur();
       }
 }

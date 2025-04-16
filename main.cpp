@@ -5,6 +5,9 @@
 #include "nlohmann/json.hpp"
 #include "auth/auth.h"
 #include "systems/ligaMix.h"
+#include "systems/gugur_bye.h"
+#include "systems/storage.h"
+#include "systems/sistemGugur.h"
 
 using namespace std;
 using json = nlohmann::json;
