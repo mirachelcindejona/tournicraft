@@ -5,99 +5,99 @@
 #include <limits>
 using namespace std;
 
-struct Team
+struct Tim
 {
-    string name;
-    int losses = 0;
+    string nama;
+    int kekalahan = 0;
 };
 
-struct Match
+struct Pertandingan
 {
-    int day; 
-    Team *team1;
-    Team *team2;
-    Team *winner = nullptr;
-    Team *loser = nullptr;
+    int hari;
+    Tim *tim1;
+    Tim *tim2;
+    Tim *pemenang = nullptr;
+    Tim *kalah = nullptr;
     bool played = false;
-    string bracket; 
-    int score1 = 0; 
-    int score2 = 0; 
+    string bracket;
+    int skor1 = 0;
+    int skor2 = 0;
 };
 
-struct MatchNode
+struct NodePertandingan
 {
-    Match match;
-    MatchNode *next;
+    Pertandingan pertandingan;
+    NodePertandingan *selanjutnya;
 };
 
-MatchNode *scheduleHead = nullptr;
+NodePertandingan *jadwalPertandingan = nullptr;
 
-void appendMatchNode(const Match &m)
+void tambahNodePertandingan(const Pertandingan &p)
 {
-    MatchNode *newNode = new MatchNode{m, nullptr};
-    if (!scheduleHead)
-        scheduleHead = newNode;
+    NodePertandingan *nodeBaru = new NodePertandingan{p, nullptr};
+    if (!jadwalPertandingan)
+        jadwalPertandingan = nodeBaru;
     else
     {
-        MatchNode *temp = scheduleHead;
-        while (temp->next)
-            temp = temp->next;
-        temp->next = newNode;
+        NodePertandingan *temp = jadwalPertandingan;
+        while (temp->selanjutnya)
+            temp = temp->selanjutnya;
+        temp->selanjutnya = nodeBaru;
     }
 }
 
-void displayScheduleForDay(int day)
+void tampilkanJadwalHari(int hari)
 {
-    cout << "\n===== Jadwal Hari ke-" << day << " =====\n";
-    bool found = false;
-    for (MatchNode *temp = scheduleHead; temp; temp = temp->next)
+    cout << "\n===== Jadwal Hari ke-" << hari << " =====\n";
+    bool ditemukan = false;
+    for (NodePertandingan *temp = jadwalPertandingan; temp; temp = temp->selanjutnya)
     {
-        if (temp->match.day == day)
+        if (temp->pertandingan.hari == hari)
         {
-            cout << "[" << temp->match.bracket << "] ";
-            cout << (temp->match.team1 ? temp->match.team1->name : "TBA")
+            cout << "[" << temp->pertandingan.bracket << "] ";
+            cout << (temp->pertandingan.tim1 ? temp->pertandingan.tim1->nama : "TBA")
                  << " vs "
-                 << (temp->match.team2 ? temp->match.team2->name : "TBA");
-            if (temp->match.played)
+                 << (temp->pertandingan.tim2 ? temp->pertandingan.tim2->nama : "TBA");
+            if (temp->pertandingan.played)
             {
-                cout << " --> Hasil: " << temp->match.score1 << " - " << temp->match.score2;
-                cout << " --> Pemenang: " << temp->match.winner->name;
+                cout << " --> Hasil: " << temp->pertandingan.skor1 << " - " << temp->pertandingan.skor2;
+                cout << " --> Pemenang: " << temp->pertandingan.pemenang->nama;
             }
             cout << "\n";
-            found = true;
+            ditemukan = true;
         }
     }
-    if (!found)
+    if (!ditemukan)
         cout << "Tidak ada pertandingan dijadwalkan hari ini.\n";
 }
 
-void displayFullSchedule()
+void tampilkanJadwalLengkap()
 {
     cout << "\n====== Jadwal Pertandingan Lengkap ======\n";
-    for (MatchNode *temp = scheduleHead; temp; temp = temp->next)
+    for (NodePertandingan *temp = jadwalPertandingan; temp; temp = temp->selanjutnya)
     {
-        cout << "Hari " << temp->match.day << " [" << temp->match.bracket << "]: ";
-        cout << (temp->match.team1 ? temp->match.team1->name : "TBA")
+        cout << "Hari " << temp->pertandingan.hari << " [" << temp->pertandingan.bracket << "]: ";
+        cout << (temp->pertandingan.tim1 ? temp->pertandingan.tim1->nama : "TBA")
              << " vs "
-             << (temp->match.team2 ? temp->match.team2->name : "TBA");
-        if (temp->match.played)
+             << (temp->pertandingan.tim2 ? temp->pertandingan.tim2->nama : "TBA");
+        if (temp->pertandingan.played)
         {
-            cout << " --> Hasil: " << temp->match.score1 << " - " << temp->match.score2;
-            cout << " --> Pemenang: " << temp->match.winner->name;
+            cout << " --> Hasil: " << temp->pertandingan.skor1 << " - " << temp->pertandingan.skor2;
+            cout << " --> Pemenang: " << temp->pertandingan.pemenang->nama;
         }
         cout << "\n";
     }
 }
 
-string inputSport()
+string masukkanCabangOlahraga()
 {
     cout << "Pilih cabang olahraga:\n";
     cout << "1. Sepak Bola\n2. Futsal\n3. Voli\n4. Badminton\n5. Tenis Meja\n6. Karate\n7. Taekwondo\n";
-    int choice;
+    int pilihan;
     cout << "Masukkan nomor pilihan: ";
-    cin >> choice;
+    cin >> pilihan;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    switch (choice)
+    switch (pilihan)
     {
     case 1:
         return "sepak bola";
@@ -118,146 +118,163 @@ string inputSport()
     }
 }
 
-int inputNumTeams()
+int masukkanJumlahTim()
 {
-    int num;
-    cout << "Jumlah tim: ";
-    cin >> num;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    return num;
-}
-
-int inputNumDays()
-{
-    int days;
-    cout << "Jumlah hari pertandingan: ";
-    cin >> days;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    return days;
-}
-
-vector<Team> inputTeams(int num)
-{
-    vector<Team> teams;
-    for (int i = 0; i < num; i++)
-    {
-        Team t;
-        cout << "Nama tim ke-" << (i + 1) << ": ";
-        getline(cin, t.name);
-        teams.push_back(t);
-    }
-    return teams;
-}
-
-bool isSetBasedSport(const string &sport)
-{
-    return (sport == "voli" || sport == "badminton" || sport == "tenis meja" ||
-            sport == "taekwondo" || sport == "karate");
-}
-
-int inputScore(const string &teamName, bool isSet)
-{
-    int score;
+    int jml;
     while (true)
     {
-        cout << "  Masukkan " << (isSet ? "jumlah set dimenangkan" : "skor")
-             << " untuk " << teamName << ": ";
-        cin >> score;
-        if (isSet && (score < 0 || score > 3))
+        cout << "Jumlah tim: ";
+        cin >> jml;
+        if (jml % 2 != 0)
         {
-            cout << "  Skor set harus antara 0 - 3.\n";
-            continue;
-        }
-        break;
-    }
-    return score;
-}
-
-vector<Match> generateMatches(const vector<Team *> &teamList, int day, const string &bracket)
-{
-    vector<Match> matches;
-    for (size_t i = 0; i + 1 < teamList.size(); i += 2)
-    {
-        Match m;
-        m.day = day;
-        m.bracket = bracket;
-        m.team1 = teamList[i];
-        m.team2 = teamList[i + 1];
-        matches.push_back(m);
-    }
-    return matches;
-}
-
-void generateMatchesLL(const vector<Team *> &teamList, int day, const string &bracket)
-{
-    vector<Match> matches = generateMatches(teamList, day, bracket);
-    for (auto &m : matches)
-        appendMatchNode(m);
-    displayScheduleForDay(day);
-}
-
-void processMatch(Match &m, const string &sport)
-{
-    bool isSet = isSetBasedSport(sport);
-    int score1, score2;
-    while (true)
-    {
-        cout << "\n[" << m.bracket << "] Hari " << m.day << " - "
-             << m.team1->name << " vs " << m.team2->name << "\n";
-        score1 = inputScore(m.team1->name, isSet);
-        score2 = inputScore(m.team2->name, isSet);
-        if (score1 == score2)
-        {
-            cout << "  Hasil tidak boleh seri. Ulangi input.\n";
+            cout << "Jangan ganjil, masukkan jumlah tim genap.\n";
         }
         else
         {
             break;
         }
     }
-    m.score1 = score1;
-    m.score2 = score2;
-    if (score1 > score2)
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    return jml;
+}
+
+int masukkanJumlahHari()
+{
+    int hari;
+    cout << "Jumlah hari pertandingan: ";
+    cin >> hari;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    return hari;
+}
+
+vector<Tim> masukkanTim(int jumlah)
+{
+    vector<Tim> timList;
+    for (int i = 0; i < jumlah; i++)
     {
-        m.winner = m.team1;
-        m.loser = m.team2;
+        Tim t;
+        cout << "Nama tim ke-" << (i + 1) << ": ";
+        getline(cin, t.nama);
+        timList.push_back(t);
+    }
+    return timList;
+}
+
+bool olahragaBerbasisSet(const string &olahraga)
+{
+    return (olahraga == "voli" || olahraga == "badminton" ||
+            olahraga == "tenis meja" || olahraga == "taekwondo" || olahraga == "karate");
+}
+
+int masukkanSkor(const string &namaTim, bool berbasisSet)
+{
+    int skor;
+    while (true)
+    {
+        cout << "  Masukkan " << (berbasisSet ? "jumlah set dimenangkan" : "skor")
+             << " untuk " << namaTim << ": ";
+        cin >> skor;
+        if (berbasisSet && (skor < 0 || skor > 3))
+        {
+            cout << "  Skor set harus antara 0 - 3.\n";
+            continue;
+        }
+        break;
+    }
+    return skor;
+}
+
+vector<Pertandingan> buatPertandingan(const vector<Tim *> &daftarTim, int hari, const string &bracket)
+{
+    vector<Pertandingan> pertandinganList;
+    for (size_t i = 0; i + 1 < daftarTim.size(); i += 2)
+    {
+        Pertandingan p;
+        p.hari = hari;
+        p.bracket = bracket;
+        p.tim1 = daftarTim[i];
+        p.tim2 = daftarTim[i + 1];
+        pertandinganList.push_back(p);
+    }
+    return pertandinganList;
+}
+
+void buatPertandinganLL(const vector<Tim *> &daftarTim, int hari, const string &bracket)
+{
+    vector<Pertandingan> pertandinganList = buatPertandingan(daftarTim, hari, bracket);
+    for (auto &p : pertandinganList)
+        tambahNodePertandingan(p);
+    tampilkanJadwalHari(hari);
+}
+
+void prosesPertandingan(Pertandingan &p, const string &olahraga)
+{
+    bool berbasisSet = olahragaBerbasisSet(olahraga);
+    int skor1, skor2;
+    while (true)
+    {
+        cout << "\n[" << p.bracket << "] Hari " << p.hari << " - "
+             << p.tim1->nama << " vs " << p.tim2->nama << "\n";
+        skor1 = masukkanSkor(p.tim1->nama, berbasisSet);
+        skor2 = masukkanSkor(p.tim2->nama, berbasisSet);
+
+        if (skor1 == skor2)
+        {
+            cout << "  Hasil tidak boleh seri. Ulangi input.\n";
+            continue;
+        }
+        if (berbasisSet && (skor1 != 2 && skor2 != 2))
+        {
+            cout << "Keterangan tidak valid: Salah satu tim harus memenangkan 2 set.\n";
+            continue;
+        }
+        break;
+    }
+    p.skor1 = skor1;
+    p.skor2 = skor2;
+    if (skor1 > skor2)
+    {
+        p.pemenang = p.tim1;
+        p.kalah = p.tim2;
     }
     else
     {
-        m.winner = m.team2;
-        m.loser = m.team1;
+        p.pemenang = p.tim2;
+        p.kalah = p.tim1;
     }
-    m.loser->losses++; 
-    m.played = true;
+    p.kalah->kekalahan++;
+    p.played = true;
 }
 
-void runTournament(const string &sport, int totalDays, vector<Team> &teams)
+void jalankanTurnamen(const string &olahraga, int totalHari, vector<Tim> &timList)
 {
-    int currentDay = 1;
-    vector<Team *> wb; 
-    vector<Team *> lb; 
+    int hariSaatIni = 1;
+    vector<Tim *> wb;
+    vector<Tim *> lb;
 
-    for (auto &t : teams)
+    for (auto &t : timList)
         wb.push_back(&t);
 
     while (true)
     {
         if (wb.size() >= 2)
         {
-            cout << "\nMemproses WB pada Hari " << currentDay << "...\n";
-            generateMatchesLL(wb, currentDay, "WB");
-            for (MatchNode *temp = scheduleHead; temp; temp = temp->next)
+            cout << "\nMemproses WB pada Hari " << hariSaatIni << "...\n";
+            buatPertandinganLL(wb, hariSaatIni, "WB");
+            for (NodePertandingan *temp = jadwalPertandingan; temp; temp = temp->selanjutnya)
             {
-                if (temp->match.day == currentDay && temp->match.bracket == "WB" && !temp->match.played)
-                    processMatch(temp->match, sport);
+                if (temp->pertandingan.hari == hariSaatIni &&
+                    temp->pertandingan.bracket == "WB" && !temp->pertandingan.played)
+                    prosesPertandingan(temp->pertandingan, olahraga);
             }
-            vector<Team *> nextWB;
-            for (MatchNode *temp = scheduleHead; temp; temp = temp->next)
+            vector<Tim *> nextWB;
+            for (NodePertandingan *temp = jadwalPertandingan; temp; temp = temp->selanjutnya)
             {
-                if (temp->match.day == currentDay && temp->match.bracket == "WB")
+                if (temp->pertandingan.hari == hariSaatIni &&
+                    temp->pertandingan.bracket == "WB")
                 {
-                    nextWB.push_back(temp->match.winner);
-                    lb.push_back(temp->match.loser);
+                    nextWB.push_back(temp->pertandingan.pemenang);
+                    lb.push_back(temp->pertandingan.kalah);
                 }
             }
             wb = nextWB;
@@ -265,20 +282,22 @@ void runTournament(const string &sport, int totalDays, vector<Team> &teams)
 
         if (lb.size() >= 2)
         {
-            cout << "\nMemproses LB pada Hari " << currentDay << "...\n";
-            generateMatchesLL(lb, currentDay, "LB");
-            for (MatchNode *temp = scheduleHead; temp; temp = temp->next)
+            cout << "\nMemproses LB pada Hari " << hariSaatIni << "...\n";
+            buatPertandinganLL(lb, hariSaatIni, "LB");
+            for (NodePertandingan *temp = jadwalPertandingan; temp; temp = temp->selanjutnya)
             {
-                if (temp->match.day == currentDay && temp->match.bracket == "LB" && !temp->match.played)
-                    processMatch(temp->match, sport);
+                if (temp->pertandingan.hari == hariSaatIni &&
+                    temp->pertandingan.bracket == "LB" && !temp->pertandingan.played)
+                    prosesPertandingan(temp->pertandingan, olahraga);
             }
-            vector<Team *> nextLB;
-            for (MatchNode *temp = scheduleHead; temp; temp = temp->next)
+            vector<Tim *> nextLB;
+            for (NodePertandingan *temp = jadwalPertandingan; temp; temp = temp->selanjutnya)
             {
-                if (temp->match.day == currentDay && temp->match.bracket == "LB")
+                if (temp->pertandingan.hari == hariSaatIni &&
+                    temp->pertandingan.bracket == "LB")
                 {
-                    if (temp->match.winner->losses < 2)
-                        nextLB.push_back(temp->match.winner);
+                    if (temp->pertandingan.pemenang->kekalahan < 2)
+                        nextLB.push_back(temp->pertandingan.pemenang);
                 }
             }
             lb = nextLB;
@@ -286,45 +305,45 @@ void runTournament(const string &sport, int totalDays, vector<Team> &teams)
 
         if (wb.size() == 1 && lb.size() == 1)
         {
-            int finalDay = totalDays;
-            Match gf;
-            gf.day = finalDay;
-            gf.bracket = "FINAL";
-            gf.team1 = wb[0];
-            gf.team2 = lb[0];
-            cout << "\nGrand Final dijadwalkan pada Hari " << finalDay << ":\n";
-            cout << gf.team1->name << " (WB) vs " << gf.team2->name << " (LB)\n";
-            processMatch(gf, sport);
-            if (gf.team1 == gf.loser && gf.team1->losses == 1)
+            int hariFinal = totalHari;
+            Pertandingan finalPertandingan;
+            finalPertandingan.hari = hariFinal;
+            finalPertandingan.bracket = "FINAL";
+            finalPertandingan.tim1 = wb[0];
+            finalPertandingan.tim2 = lb[0];
+            cout << "\nGrand Final dijadwalkan pada Hari " << hariFinal << ":\n";
+            cout << finalPertandingan.tim1->nama << " (WB) vs " << finalPertandingan.tim2->nama << " (LB)\n";
+            prosesPertandingan(finalPertandingan, olahraga);
+            if (finalPertandingan.tim1 == finalPertandingan.kalah && finalPertandingan.tim1->kekalahan == 1)
             {
-                cout << "\nGrand Final Reset diperlukan karena " << gf.team1->name
+                cout << "\nGrand Final Reset diperlukan karena " << finalPertandingan.tim1->nama
                      << " baru kalah satu kali. Main ulang Grand Final.\n";
-                Match gfReset;
-                gfReset.day = finalDay;
-                gfReset.bracket = "FINAL-RESET";
-                gfReset.team1 = gf.team1;
-                gfReset.team2 = gf.team2;
-                processMatch(gfReset, sport);
-                gf = gfReset;
+                Pertandingan finalReset;
+                finalReset.hari = hariFinal;
+                finalReset.bracket = "FINAL-RESET";
+                finalReset.tim1 = finalPertandingan.tim1;
+                finalReset.tim2 = finalPertandingan.tim2;
+                prosesPertandingan(finalReset, olahraga);
+                finalPertandingan = finalReset;
             }
-            appendMatchNode(gf);
-            cout << "\nJUARA TURNAMEN: " << gf.winner->name << "\n";
+            tambahNodePertandingan(finalPertandingan);
+            cout << "\nJUARA TURNAMEN: " << finalPertandingan.pemenang->nama << "\n";
             break;
         }
 
-        currentDay++;
-        if (currentDay > totalDays)
-            currentDay = totalDays;
+        hariSaatIni++;
+        if (hariSaatIni > totalHari)
+            hariSaatIni = totalHari;
     }
-    displayFullSchedule();
+    tampilkanJadwalLengkap();
 }
 
 int main()
 {
-    string sport = inputSport();
-    int numTeams = inputNumTeams();
-    int days = inputNumDays();
-    vector<Team> teamList = inputTeams(numTeams);
-    runTournament(sport, days, teamList);
+    string olahraga = masukkanCabangOlahraga();
+    int jumlahTim = masukkanJumlahTim();
+    int jumlahHari = masukkanJumlahHari();
+    vector<Tim> daftarTim = masukkanTim(jumlahTim);
+    jalankanTurnamen(olahraga, jumlahHari, daftarTim);
     return 0;
 }
