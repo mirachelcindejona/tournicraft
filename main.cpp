@@ -4,7 +4,7 @@
 #include <fstream>
 #include "nlohmann/json.hpp"
 #include "auth/auth.h"
-#include "addTour.cpp"
+#include "systems/ligaMix.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -16,6 +16,9 @@ struct User {
 
 bool isLoggedIn = false;
 string currentUser;
+
+void buatTurnamenBaru(); // Deklarasi fungsi dari addTour.cpp
+
 void cariTurnamenPublik() {
       cout << "\n=== CARI TURNAMEN (PUBLIK) ===\n";
       cout << "Daftar turnamen yang tersedia akan muncul di sini nanti\n";

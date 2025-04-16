@@ -5,24 +5,10 @@
 #include <sstream>
 #include <cstdlib>
 #include "nlohmann/json.hpp"
+#include "systems/ligaMix.h"
 
 using namespace std;
 using json = nlohmann::json;
-
-const string TURNAMEN_FILE = "data/turnamen.json";
-
-json loadTurnamen() {
-    ifstream inFile(TURNAMEN_FILE);
-    if (!inFile) return json::array(); // jika file tidak ada, return array kosong
-    json data;
-    inFile >> data;
-    return data;
-}
-
-void saveTurnamen(const json& data) {
-    ofstream outFile(TURNAMEN_FILE);
-    outFile << data.dump(4); // pretty print
-}
 
 void buatTurnamenBaru() {
       cout << "\n=== BUAT TURNAMEN BARU ===\n";
@@ -32,7 +18,7 @@ void buatTurnamenBaru() {
       cin.ignore();
       getline(cin, namaTurnamen);
       
-      int pilihanCabor;
+      int jenisOlahraga;
       cout << "\nPilih cabang olahraga:\n";
       cout << "1. Sepak Bola\n";
       cout << "2. Futsal\n";
@@ -54,7 +40,7 @@ void buatTurnamenBaru() {
       cout << "18. Kartu (Yu-Gi-Oh)\n";
       cout << "19. Go (permainan strategi)\n";
       cout << "Pilih opsi (1-19): ";
-      cin >> pilihanCabor;
+      cin >> jenisOlahraga;
       
       int jumlahTim;
       do {
@@ -72,7 +58,7 @@ void buatTurnamenBaru() {
       vector<string> sistemTersedia;
       cout << "\nSistem pertandingan yang direkomendasikan:\n";
       
-      switch(pilihanCabor) {
+      switch(jenisOlahraga) {
             case 1: // Sepak Bola
             case 2: // Futsal
             case 5: // Voli
@@ -137,26 +123,39 @@ void buatTurnamenBaru() {
       // Simpan data turnamen ke JSON
       json turnamenData = loadTurnamen();
       
+      // Format turnamen sesuai dengan jenis olahraga
+      string formatTurnamen;
+      if (jenisOlahraga == 1 || jenisOlahraga == 2 || jenisOlahraga == 5) {
+          formatTurnamen = "Single/Double Round Robin";
+      } else if (jenisOlahraga == 3) {
+          formatTurnamen = "Double Round Robin";
+      } else {
+          formatTurnamen = "Single Round Robin";
+      }
+      
       json turnamenBaru = {
           {"nama", namaTurnamen},
-          {"jenisOlahraga", pilihanCabor},
+          {"jenisOlahraga", jenisOlahraga},
           {"jumlahTim", jumlahTim},
           {"jumlahHari", jumlahHari},
-          {"sistem", sistemTerpilih}
+          {"jumlahMatch", 0},
+          {"format", formatTurnamen},
+          {"sistem", sistemTerpilih},
+          {"tim", json::array()},
+          {"jadwal", json::array()}
       };
       
       turnamenData.push_back(turnamenBaru);
       saveTurnamen(turnamenData);
       
       cout << "\nTurnamen " << namaTurnamen << " berhasil dibuat!\n";
-      cout << "Cabang: " << pilihanCabor << "\n";
+      cout << "Cabang: " << jenisOlahraga << "\n";
       cout << "Jumlah Tim: " << jumlahTim << "\n";
       cout << "Jumlah Hari: " << jumlahHari << "\n";
       cout << "Sistem Pertandingan: " << sistemTerpilih << "\n";
       
       // Jalankan ligaMix.cpp jika sistem yang dipilih adalah Liga
       if (sistemTerpilih == "Liga") {
-          cout << "\nMenjalankan sistem Liga...\n";
-          system("g++ systems/ligaMix.cpp -o ligaMix && ./ligaMix");
+          sistemLiga();
       }
 }

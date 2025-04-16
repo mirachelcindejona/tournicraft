@@ -1,29 +1,8 @@
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <algorithm>
+#include "systems/ligaMix.h"
 #include <fstream>
 #include <sstream>
-#include "nlohmann/json.hpp"
-using namespace std;
-using json = nlohmann::json;
 
 const string TURNAMEN_FILE = "data/turnamen.json";
-
-struct Tim {
-    string nama;
-    int main = 0;
-    int menang = 0;
-    int seri = 0;
-    int kalah = 0;
-    int poin = 0;
-};
-
-struct Pertandingan {
-    int tim1, tim2;
-    int skor1, skor2;
-    bool sudahDimainkan = false;
-};
 
 vector<Tim> tim;
 vector<Pertandingan> jadwal;
@@ -320,25 +299,25 @@ void simpanTurnamen() {
     cout << "\nTurnamen " << namaTurnamen << " berhasil disimpan!\n";
 }
 
-int main() {
+void sistemLiga() {
     cout << "\n=== SISTEM LIGA ===\n";
     
     // Load data turnamen dari file
     if (!loadTurnamenData()) {
-        return 1; // Keluar jika tidak ada data turnamen atau bukan sistem Liga
+        return; // Keluar jika tidak ada data turnamen atau bukan sistem Liga
     }
     
     // Verifikasi jenis olahraga yang valid untuk sistem liga (1-6)
     if (jenisOlahraga < 1 || jenisOlahraga > 6) {
         cout << "Jenis olahraga tidak mendukung sistem liga. Hanya cabang 1-6 yang dapat menggunakan sistem liga.\n";
-        return 1;
+        return;
     }
     
     inputDataTim();
 
     if (jenisOlahraga == 1 || jenisOlahraga == 2 || jenisOlahraga == 5) {
-        cout << "Pilih format pertandingan:\n";
         cout << "1. Single Round Robin\n2. Double Round Robin\n";
+        cout << "Pilih format pertandingan:\n";
         int format;
         cin >> format;
         if (format == 1) buatJadwalSingleRoundRobin();
@@ -378,6 +357,4 @@ int main() {
     
     // Simpan data turnamen ke JSON
     simpanTurnamen();
-
-    return 0;
 }
