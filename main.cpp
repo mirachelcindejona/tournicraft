@@ -8,6 +8,7 @@
 #include "systems/gugur_bye.h"
 #include "systems/storage.h"
 #include "systems/sistemGugur.h"
+#include "systems/swiss.h"
 
 using namespace std;
 using json = nlohmann::json;

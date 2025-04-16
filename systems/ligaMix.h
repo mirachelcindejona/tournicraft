@@ -21,24 +21,25 @@ struct TimLiga {
     int poin = 0;
 };
 
-// Struktur data untuk pertandingan
-struct PertandinganLiga {
+// Node untuk linked list pertandingan
+struct PertandinganNode {
     int tim1, tim2;
     int skor1, skor2;
     bool sudahDimainkan = false;
+    PertandinganNode* next; // Pointer ke node berikutnya untuk linked list
+};
+
+// Struktur untuk mengelola linked list pertandingan
+struct JadwalPertandingan {
+    PertandinganNode* head;
+    PertandinganNode* tail;
+    int jumlah;
+
+    // Constructor
+    JadwalPertandingan() : head(nullptr), tail(nullptr), jumlah(0) {}
 };
 
 // Fungsi-fungsi untuk sistem liga
-bool loadTurnamenData();
-void inputDataTim();
-void buatJadwalSingleRoundRobin();
-void buatJadwalDoubleRoundRobin();
-void tampilkanJadwalPertandingan();
-void inputSkorHari(int hari);
-void urutkanKlasemen();
-void tampilkanKlasemen();
-void tampilkanPemenang();
-void simpanTurnamen();
 void sistemLiga();
 
 #endif // LIGA_MIX_H

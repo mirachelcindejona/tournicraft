@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <queue>
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <iomanip>
@@ -28,6 +27,17 @@ struct PertandinganBye {
     bool sudahDimainkan;
     int skor1;
     int skor2;
+    PertandinganBye* next; // Pointer untuk linked list
+};
+
+// Struktur untuk mengelola jadwal pertandingan
+struct JadwalBye {
+    PertandinganBye* head;
+    PertandinganBye* tail;
+    int jumlah;
+    
+    // Constructor
+    JadwalBye() : head(nullptr), tail(nullptr), jumlah(0) {}
 };
 
 // Fungsi untuk menghitung power of two terdekat
