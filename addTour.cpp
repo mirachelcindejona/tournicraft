@@ -67,25 +67,25 @@ void buatTurnamenBaru() {
             case 2: // Futsal
             case 5: // Voli
             case 6: // Badminton
-            sistemTersedia = {"Liga", "Gugur Bye", "Knockout", "Gugur Ganda"};
+            sistemTersedia = {"Liga", "Gugur Bye", "Knockout"};
             break;
             case 3: // Handball
             sistemTersedia = {"Liga"};
             break;
             case 4: // Tenis Meja
-            sistemTersedia = {"Liga", "Gugur Ganda"};
+            sistemTersedia = {"Liga"};
             break;
             case 7: // Tenis
             sistemTersedia = {"Gugur Bye", "Knockout"};
             break;
             case 8: // Taekwondo
-            sistemTersedia = {"Gugur Bye", "Gugur Ganda"};
+            sistemTersedia = {"Gugur Bye"};
             break;
             case 9: // Basket
             sistemTersedia = {"Gugur Bye", "Knockout"};
             break;
             case 10: // Karate
-            sistemTersedia = {"Gugur Ganda"};
+            sistemTersedia = {"Knockout"};
             break;
             case 11: // Catur
             sistemTersedia = {"Knockout", "Swiss"};
@@ -167,7 +167,5 @@ void buatTurnamenBaru() {
          sistemGugur();
       } else if (sistemTerpilih == "Swiss") {
          swiss();
-      } else if (sistemTerpilih == "Gugur Ganda") {
-         sistemGugurGanda();
       }
 }

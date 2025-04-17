@@ -44,4 +44,4 @@ struct JadwalGugur {
 // Fungsi utama sistem gugur
 void sistemGugur();
 
-#endif // SISTEM_GUGUR_H
+#endif

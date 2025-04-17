@@ -14,5 +14,5 @@ json loadTurnamen() {
 // Fungsi untuk menyimpan data turnamen ke file JSON
 void saveTurnamen(const json& data) {
     ofstream outFile(TURNAMEN_FILE);
-    outFile << data.dump(4); // pretty print
+    outFile << data.dump(4);
 }

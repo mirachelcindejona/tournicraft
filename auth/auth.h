@@ -15,7 +15,6 @@ void saveOperators(const json& data);
 bool usernameExists(const json& users, const string& username);
 int findUserIndex(const json& users, const string& username);
 
-// Konstanta
 extern const string USERS_FILE;
 
-#endif // AUTH_H
+#endif

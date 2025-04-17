@@ -47,4 +47,4 @@ struct JadwalSwiss {
 void sistemSwiss();
 int swiss(); // Backward compatibility function
 
-#endif // SISTEM_SWISS_H
+#endif

@@ -47,4 +47,4 @@ int previousPowerOfTwo(int n);
 // Fungsi utama sistem gugur bye
 int gugurBye();
 
-#endif // GUGUR_BYE_H
+#endif

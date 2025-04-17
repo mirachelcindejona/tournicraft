@@ -42,4 +42,4 @@ struct JadwalPertandingan {
 // Fungsi-fungsi untuk sistem liga
 void sistemLiga();
 
-#endif // LIGA_MIX_H
+#endif

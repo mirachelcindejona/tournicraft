@@ -21,38 +21,24 @@ struct User {
 bool isLoggedIn = false;
 string currentUser;
 
-void buatTurnamenBaru(); // Deklarasi fungsi dari addTour.cpp
+void buatTurnamenBaru();
 
-void cariTurnamenPublik() {
-      cout << "\n=== CARI TURNAMEN (PUBLIK) ===\n";
-      cout << "Daftar turnamen yang tersedia akan muncul di sini nanti\n";
-}
-
-// ===================== MENU SETELAH LOGIN ===================== //
 void menuOperator() {
       int pilihan;
       bool aktif = true;
 
       while (aktif) {
             cout << "\n===== MENU OPERATOR =====\n";
-            cout << "1. Cari turnamen lain\n";
-            cout << "2. Buat turnamen baru\n";
-            cout << "3. Lihat daftar turnamen\n";
-            cout << "4. Keluar\n";
+            cout << "1. Buat turnamen baru\n";
+            cout << "2. Keluar\n";
             cout << "Pilih menu: ";
             cin >> pilihan;
 
             switch (pilihan) {
             case 1:
-                  cariTurnamenPublik();
-                  break;
-            case 2:
                   buatTurnamenBaru();
                   break;
-            case 3:
-                  cout << "\n=== DAFTAR TURNAMEN ===\n";
-                  break;
-            case 4:
+            case 2:
                   cout << "Keluar dari akun operator.\n";
                   isLoggedIn = false;
                   aktif = false;
@@ -63,33 +49,28 @@ void menuOperator() {
       }
 }
 
-// ===================== MENU UTAMA ===================== //
 void menuUtama() {
       int pilihan;
       bool berjalan = true;
 
       while (berjalan) {
             cout << "\n====== TOURNICRAFT ======\n";
-            cout << "1. Cari Turnamen\n";
-            cout << "2. Registrasi sebagai Operator\n";
-            cout << "3. Login sebagai Operator\n";
-            cout << "4. Keluar Aplikasi\n";
+            cout << "1. Registrasi sebagai Operator\n";
+            cout << "2. Login sebagai Operator\n";
+            cout << "3. Keluar Aplikasi\n";
             cout << "Pilih menu: ";
             cin >> pilihan;
 
             switch (pilihan) {
             case 1:
-                  cariTurnamenPublik();
-                  break;
-            case 2:
                   registerOperator();
                   break;
-            case 3:
+            case 2:
                   if (loginOperator()) {
                         menuOperator();
                   }
                   break;
-            case 4:
+            case 3:
                   cout << "Terima kasih telah menggunakan TourniCraft!\n";
                   berjalan = false;
                   break;

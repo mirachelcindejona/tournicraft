@@ -1,310 +1,1389 @@
 [
     {
-        "format": "Single Elimination",
+        "format": "Single/Double Round Robin",
         "jadwal": [
             {
-                "deskripsi": "sfsd vs cvbcv",
-                "hari": 1,
-                "isBye": false,
+                "skor1": 4,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 1
+            },
+            {
+                "skor1": 5,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 2
+            },
+            {
+                "skor1": 5,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 3
+            },
+            {
+                "skor1": 5,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 4
+            },
+            {
+                "skor1": 6,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 5
+            },
+            {
+                "skor1": 4,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 6
+            },
+            {
+                "skor1": 6,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 7
+            },
+            {
+                "skor1": 5,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 8
+            },
+            {
+                "skor1": 4,
+                "skor2": 6,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 9
+            },
+            {
+                "skor1": 4,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 2
+            },
+            {
+                "skor1": 6,
+                "skor2": 6,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 3
+            },
+            {
+                "skor1": 5,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 4
+            },
+            {
+                "skor1": 7,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 5
+            },
+            {
+                "skor1": 7,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 6
+            },
+            {
+                "skor1": 7,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 7
+            },
+            {
+                "skor1": 6,
+                "skor2": 7,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 8
+            },
+            {
+                "skor1": 6,
+                "skor2": 8,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 9
+            },
+            {
+                "skor1": 7,
+                "skor2": 6,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 3
+            },
+            {
+                "skor1": 7,
+                "skor2": 8,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 4
+            },
+            {
+                "skor1": 7,
+                "skor2": 8,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 5
+            },
+            {
+                "skor1": 7,
+                "skor2": 8,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 6
+            },
+            {
+                "skor1": 7,
+                "skor2": 7,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 7
+            },
+            {
+                "skor1": 7,
+                "skor2": 7,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 8
+            },
+            {
+                "skor1": 8,
+                "skor2": 32,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 9
+            },
+            {
+                "skor1": 4,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 4
+            },
+            {
+                "skor1": 3,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 5
+            },
+            {
+                "skor1": 3,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 6
+            },
+            {
+                "skor1": 5,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 7
+            },
+            {
+                "skor1": 2,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 8
+            },
+            {
+                "skor1": 3,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 9
+            },
+            {
+                "skor1": 5,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 5
+            },
+            {
+                "skor1": 3,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 6
+            },
+            {
+                "skor1": 4,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 7
+            },
+            {
+                "skor1": 5,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 8
+            },
+            {
                 "skor1": 2,
                 "skor2": 4,
                 "sudahDimainkan": true,
-                "tim1": "sfsd",
-                "tim2": "cvbcv"
+                "tim1": 4,
+                "tim2": 9
             },
             {
-                "deskripsi": "ada vs BYE",
+                "skor1": 2,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 6
+            },
+            {
+                "skor1": 5,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 7
+            },
+            {
+                "skor1": 3,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 8
+            },
+            {
+                "skor1": 5,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 9
+            },
+            {
+                "skor1": 2,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 6,
+                "tim2": 7
+            },
+            {
+                "skor1": 5,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 6,
+                "tim2": 8
+            },
+            {
+                "skor1": 3,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 6,
+                "tim2": 9
+            },
+            {
+                "skor1": 5,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 7,
+                "tim2": 8
+            },
+            {
+                "skor1": 4,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 7,
+                "tim2": 9
+            },
+            {
+                "skor1": 2,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 8,
+                "tim2": 9
+            }
+        ],
+        "jenisOlahraga": 1,
+        "jumlahHari": 4,
+        "jumlahMatch": 45,
+        "jumlahTim": 10,
+        "nama": "rere",
+        "sistem": "Liga",
+        "tim": [
+            {
+                "kalah": 1,
+                "main": 9,
+                "menang": 6,
+                "nama": "rt",
+                "poin": 20,
+                "seri": 2
+            },
+            {
+                "kalah": 3,
+                "main": 8,
+                "menang": 5,
+                "nama": "qwe",
+                "poin": 15,
+                "seri": 0
+            },
+            {
+                "kalah": 4,
+                "main": 9,
+                "menang": 5,
+                "nama": "sd",
+                "poin": 15,
+                "seri": 0
+            },
+            {
+                "kalah": 3,
+                "main": 9,
+                "menang": 4,
+                "nama": "asd",
+                "poin": 14,
+                "seri": 2
+            },
+            {
+                "kalah": 3,
+                "main": 9,
+                "menang": 4,
+                "nama": "df",
+                "poin": 14,
+                "seri": 2
+            },
+            {
+                "kalah": 4,
+                "main": 9,
+                "menang": 4,
+                "nama": "we",
+                "poin": 13,
+                "seri": 1
+            },
+            {
+                "kalah": 4,
+                "main": 8,
+                "menang": 4,
+                "nama": "dfg",
+                "poin": 12,
+                "seri": 0
+            },
+            {
+                "kalah": 4,
+                "main": 9,
+                "menang": 3,
+                "nama": "as",
+                "poin": 11,
+                "seri": 2
+            },
+            {
+                "kalah": 6,
+                "main": 10,
+                "menang": 2,
+                "nama": "we",
+                "poin": 8,
+                "seri": 2
+            },
+            {
+                "kalah": 7,
+                "main": 10,
+                "menang": 2,
+                "nama": "dsf",
+                "poin": 7,
+                "seri": 1
+            }
+        ]
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 1
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 3
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 4
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 5
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 1
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 3
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 1
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 4
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 1
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 5
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 1
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 3
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 4
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 5
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 4
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 3
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 5
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 3
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 5
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 4
+            }
+        ],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 75,
+        "jumlahTim": 6,
+        "nama": "aaqw",
+        "sistem": "Liga",
+        "tim": [
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "adas",
+                "poin": 10,
+                "seri": 10
+            },
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "dsfe",
+                "poin": 10,
+                "seri": 10
+            },
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "asdsa",
+                "poin": 10,
+                "seri": 10
+            },
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "asdas",
+                "poin": 10,
+                "seri": 10
+            },
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "asddfg",
+                "poin": 10,
+                "seri": 10
+            },
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "ere",
+                "poin": 10,
+                "seri": 10
+            }
+        ]
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 1
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 3
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 4
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 5
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 1
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 3
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 1
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 4
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 1
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 5
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 1
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 3
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 4
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 5
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 4
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 3
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 5
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 3
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 5
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 4
+            }
+        ],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 315,
+        "jumlahTim": 6,
+        "nama": "",
+        "sistem": "Liga",
+        "tim": [
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "",
+                "poin": 10,
+                "seri": 10
+            },
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "",
+                "poin": 10,
+                "seri": 10
+            },
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "",
+                "poin": 10,
+                "seri": 10
+            },
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "",
+                "poin": 10,
+                "seri": 10
+            },
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "",
+                "poin": 10,
+                "seri": 10
+            },
+            {
+                "kalah": 0,
+                "main": 10,
+                "menang": 0,
+                "nama": "",
+                "poin": 10,
+                "seri": 10
+            }
+        ]
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 6,
+        "nama": "",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 6,
+        "nama": "",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 6,
+        "nama": "",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 6,
+        "nama": "",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 6,
+        "nama": "",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 6,
+        "nama": "",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 6,
+        "nama": "",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 6,
+        "nama": "",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [
+            {
+                "skor1": 3,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 1
+            },
+            {
+                "skor1": 4,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 0
+            },
+            {
+                "skor1": 5,
+                "skor2": 6,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 2
+            },
+            {
+                "skor1": 4,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 0
+            },
+            {
+                "skor1": 2,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 3
+            },
+            {
+                "skor1": 5,
+                "skor2": 6,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 0
+            },
+            {
+                "skor1": 3,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 4
+            },
+            {
+                "skor1": 5,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 0
+            },
+            {
+                "skor1": 6,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 5
+            },
+            {
+                "skor1": 3,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 0
+            },
+            {
+                "skor1": 3,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 2
+            },
+            {
+                "skor1": 6,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 1
+            },
+            {
+                "skor1": 4,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 3
+            },
+            {
+                "skor1": 5,
+                "skor2": 6,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 1
+            },
+            {
+                "skor1": 4,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 4
+            },
+            {
+                "skor1": 3,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 1
+            },
+            {
+                "skor1": 4,
+                "skor2": 6,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 5
+            },
+            {
+                "skor1": 4,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 1
+            },
+            {
+                "skor1": 2,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 3
+            },
+            {
+                "skor1": 4,
+                "skor2": 6,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 2
+            },
+            {
+                "skor1": 3,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 4
+            },
+            {
+                "skor1": 4,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 2
+            },
+            {
+                "skor1": 5,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 5
+            },
+            {
+                "skor1": 2,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 2
+            },
+            {
+                "skor1": 5,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 4
+            },
+            {
+                "skor1": 3,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 3
+            },
+            {
+                "skor1": 3,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 5
+            },
+            {
+                "skor1": 5,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 3
+            },
+            {
+                "skor1": 5,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 4,
+                "tim2": 5
+            },
+            {
+                "skor1": 2,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 5,
+                "tim2": 4
+            }
+        ],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 30,
+        "jumlahTim": 6,
+        "nama": "2",
+        "sistem": "Liga",
+        "tim": [
+            {
+                "kalah": 4,
+                "main": 10,
+                "menang": 6,
+                "nama": "dg",
+                "poin": 18,
+                "seri": 0
+            },
+            {
+                "kalah": 8,
+                "main": 14,
+                "menang": 6,
+                "nama": "sddas",
+                "poin": 18,
+                "seri": 0
+            },
+            {
+                "kalah": 4,
+                "main": 10,
+                "menang": 6,
+                "nama": "dfd",
+                "poin": 18,
+                "seri": 0
+            },
+            {
+                "kalah": 1,
+                "main": 6,
+                "menang": 5,
+                "nama": "rte",
+                "poin": 15,
+                "seri": 0
+            },
+            {
+                "kalah": 5,
+                "main": 10,
+                "menang": 5,
+                "nama": "ertr",
+                "poin": 15,
+                "seri": 0
+            },
+            {
+                "kalah": 8,
+                "main": 10,
+                "menang": 2,
+                "nama": "ghfg",
+                "poin": 6,
+                "seri": 0
+            }
+        ]
+    },
+    {
+        "format": "Single Elimination",
+        "jadwal": [
+            {
+                "deskripsi": "gfh vs fg",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 4,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": "gfh",
+                "tim2": "fg"
+            },
+            {
+                "deskripsi": "re vs BYE",
                 "hari": 1,
                 "isBye": true,
                 "skor1": 0,
                 "skor2": 0,
                 "sudahDimainkan": true,
-                "tim1": "ada",
+                "tim1": "re",
                 "tim2": "BYE"
             },
             {
-                "deskripsi": "xcxc vs BYE",
+                "deskripsi": "dfs vs BYE",
                 "hari": 2,
                 "isBye": true,
                 "skor1": 0,
                 "skor2": 0,
                 "sudahDimainkan": true,
-                "tim1": "xcxc",
+                "tim1": "dfs",
                 "tim2": "BYE"
             },
             {
-                "deskripsi": "wqdqw vs BYE",
-                "hari": 3,
+                "deskripsi": "gds vs BYE",
+                "hari": 2,
                 "isBye": true,
                 "skor1": 0,
                 "skor2": 0,
                 "sudahDimainkan": true,
-                "tim1": "wqdqw",
+                "tim1": "gds",
                 "tim2": "BYE"
             }
         ],
-        "jenisOlahraga": 2,
-        "jumlahHari": 3,
+        "jenisOlahraga": 7,
+        "jumlahHari": 2,
         "jumlahMatch": 4,
         "jumlahTim": 5,
-        "nama": "asdasd",
+        "nama": "sd",
         "sistem": "Gugur Bye",
         "tim": [
             {
                 "isBye": false,
-                "nama": "sfsd",
+                "nama": "gfh",
                 "skor": 0
             },
             {
                 "isBye": false,
-                "nama": "cvbcv",
+                "nama": "fg",
                 "skor": 0
             },
             {
                 "isBye": true,
-                "nama": "ada",
+                "nama": "re",
                 "skor": 0
             },
             {
                 "isBye": true,
-                "nama": "xcxc",
+                "nama": "dfs",
                 "skor": 0
             },
             {
                 "isBye": true,
-                "nama": "wqdqw",
+                "nama": "gds",
                 "skor": 0
             }
         ]
-    },
-    {
-        "format": "Swiss System",
-        "jadwal": [
-            {
-                "deskripsi": "cxv vs we",
-                "hari": 1,
-                "isBye": false,
-                "skor1": 4,
-                "skor2": 12,
-                "sudahDimainkan": true,
-                "tim1": "cxv",
-                "tim2": "we"
-            },
-            {
-                "deskripsi": "fggt vs iy",
-                "hari": 1,
-                "isBye": false,
-                "skor1": 5,
-                "skor2": 3,
-                "sudahDimainkan": true,
-                "tim1": "fggt",
-                "tim2": "iy"
-            },
-            {
-                "deskripsi": "sfdsfs vs t",
-                "hari": 1,
-                "isBye": false,
-                "skor1": 2,
-                "skor2": 4,
-                "sudahDimainkan": true,
-                "tim1": "sfdsfs",
-                "tim2": "t"
-            },
-            {
-                "deskripsi": "cxv vs fggt",
-                "hari": 2,
-                "isBye": false,
-                "skor1": 5,
-                "skor2": 3,
-                "sudahDimainkan": true,
-                "tim1": "cxv",
-                "tim2": "fggt"
-            },
-            {
-                "deskripsi": "we vs iy",
-                "hari": 2,
-                "isBye": false,
-                "skor1": 4,
-                "skor2": 2,
-                "sudahDimainkan": true,
-                "tim1": "we",
-                "tim2": "iy"
-            },
-            {
-                "deskripsi": "cxv vs iy",
-                "hari": 2,
-                "isBye": false,
-                "skor1": 5,
-                "skor2": 3,
-                "sudahDimainkan": true,
-                "tim1": "cxv",
-                "tim2": "iy"
-            },
-            {
-                "deskripsi": "we vs fggt",
-                "hari": 3,
-                "isBye": false,
-                "skor1": 7,
-                "skor2": 5,
-                "sudahDimainkan": true,
-                "tim1": "we",
-                "tim2": "fggt"
-            }
-        ],
-        "jenisOlahraga": 7,
-        "jumlahHari": 3,
-        "jumlahMatch": 7,
-        "jumlahTim": 8,
-        "nama": "asdsa",
-        "sistem": "Swiss",
-        "tim": [
-            {
-                "byeRound": false,
-                "lawan": [
-                    0,
-                    3,
-                    2
-                ],
-                "matchPlayed": 3,
-                "nama": "we",
-                "poin": 3
-            },
-            {
-                "byeRound": false,
-                "lawan": [
-                    1,
-                    2,
-                    3
-                ],
-                "matchPlayed": 3,
-                "nama": "cxv",
-                "poin": 2
-            },
-            {
-                "byeRound": false,
-                "lawan": [
-                    3,
-                    0,
-                    1
-                ],
-                "matchPlayed": 3,
-                "nama": "fggt",
-                "poin": 1
-            },
-            {
-                "byeRound": false,
-                "lawan": [
-                    4
-                ],
-                "matchPlayed": 1,
-                "nama": "t",
-                "poin": 1
-            },
-            {
-                "byeRound": false,
-                "lawan": [
-                    2,
-                    1,
-                    0
-                ],
-                "matchPlayed": 3,
-                "nama": "iy",
-                "poin": 0
-            },
-            {
-                "byeRound": false,
-                "lawan": [
-                    5
-                ],
-                "matchPlayed": 1,
-                "nama": "sfdsfs",
-                "poin": 0
-            }
-        ]
-    },
-    {
-        "format": "Single Elimination",
-        "jadwal": [
-            {
-                "babak": 1,
-                "deskripsi": "fdg vs htr",
-                "skor1": 4,
-                "skor2": 6,
-                "sudahDimainkan": true,
-                "tim1": "fdg",
-                "tim2": "htr"
-            },
-            {
-                "babak": 1,
-                "deskripsi": "dfgdf vs ht",
-                "skor1": 3,
-                "skor2": 2,
-                "sudahDimainkan": true,
-                "tim1": "dfgdf",
-                "tim2": "ht"
-            },
-            {
-                "babak": 2,
-                "deskripsi": "htr vs dfgdf",
-                "skor1": 5,
-                "skor2": 4,
-                "sudahDimainkan": true,
-                "tim1": "htr",
-                "tim2": "dfgdf"
-            },
-            {
-                "babak": 3,
-                "deskripsi": "htr vs TBD",
-                "skor1": 0,
-                "skor2": 0,
-                "sudahDimainkan": false,
-                "tim1": "htr",
-                "tim2": "TBD"
-            }
-        ],
-        "jenisOlahraga": 7,
-        "jumlahHari": 4,
-        "jumlahMatch": 4,
-        "jumlahTim": 5,
-        "nama": "asdas",
-        "sistem": "Knockout",
-        "tim": [
-            {
-                "isEliminated": false,
-                "nama": "fdg",
-                "skor": 0
-            },
-            {
-                "isEliminated": false,
-                "nama": "htr",
-                "skor": 0
-            },
-            {
-                "isEliminated": false,
-                "nama": "dfgdf",
-                "skor": 0
-            },
-            {
-                "isEliminated": false,
-                "nama": "ht",
-                "skor": 0
-            },
-            {
-                "isEliminated": false,
-                "nama": "er",
-                "skor": 0
-            }
-        ]
-    },
-    {
-        "format": "Single Round Robin",
-        "jadwal": [],
-        "jenisOlahraga": 19,
-        "jumlahHari": 3,
-        "jumlahMatch": 0,
-        "jumlahTim": 6,
-        "nama": "asdsa",
-        "sistem": "Swiss",
-        "tim": []
     }
 ]
