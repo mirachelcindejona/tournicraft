@@ -1385,5 +1385,837 @@
                 "skor": 0
             }
         ]
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 1,
+        "jumlahHari": 2,
+        "jumlahMatch": 0,
+        "jumlahTim": 4,
+        "nama": "AYUK GASKAN",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 3,
+        "jumlahHari": 1,
+        "jumlahMatch": 0,
+        "jumlahTim": 2,
+        "nama": "DAKAH LAWAN",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 1
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 0
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 2
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 1
+            }
+        ],
+        "jenisOlahraga": 1,
+        "jumlahHari": 2,
+        "jumlahMatch": 6,
+        "jumlahTim": 3,
+        "nama": "aaaaaayam",
+        "sistem": "Liga",
+        "tim": [
+            {
+                "kalah": 0,
+                "main": 4,
+                "menang": 0,
+                "nama": "ica",
+                "poin": 4,
+                "seri": 4
+            },
+            {
+                "kalah": 0,
+                "main": 4,
+                "menang": 0,
+                "nama": "rakel",
+                "poin": 4,
+                "seri": 4
+            },
+            {
+                "kalah": 0,
+                "main": 4,
+                "menang": 0,
+                "nama": "",
+                "poin": 4,
+                "seri": 4
+            }
+        ]
+    },
+    {
+        "format": "Single Elimination",
+        "jadwal": [
+            {
+                "deskripsi": "akuddd vs akuccc",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 2,
+                "skor2": 21,
+                "sudahDimainkan": true,
+                "tim1": "akuddd",
+                "tim2": "akuccc"
+            },
+            {
+                "deskripsi": "akufff vs BYE",
+                "hari": 2,
+                "isBye": true,
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": "akufff",
+                "tim2": "BYE"
+            }
+        ],
+        "jenisOlahraga": 2,
+        "jumlahHari": 3,
+        "jumlahMatch": 2,
+        "jumlahTim": 3,
+        "nama": "aaaaa",
+        "sistem": "Gugur Bye",
+        "tim": [
+            {
+                "isBye": false,
+                "nama": "akuddd",
+                "skor": 0
+            },
+            {
+                "isBye": false,
+                "nama": "akuccc",
+                "skor": 0
+            },
+            {
+                "isBye": true,
+                "nama": "akufff",
+                "skor": 0
+            }
+        ]
+    },
+    {
+        "format": "Double Round Robin",
+        "jadwal": [
+            {
+                "skor1": 0,
+                "skor2": 1,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 1
+            },
+            {
+                "skor1": 1,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 0
+            },
+            {
+                "skor1": 2,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 2
+            },
+            {
+                "skor1": 3,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 0
+            },
+            {
+                "skor1": 2,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 3
+            },
+            {
+                "skor1": 1,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 0
+            },
+            {
+                "skor1": 2,
+                "skor2": 1,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 2
+            },
+            {
+                "skor1": 1,
+                "skor2": 1,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 1
+            },
+            {
+                "skor1": 1,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 3
+            },
+            {
+                "skor1": 3,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 1
+            },
+            {
+                "skor1": 2,
+                "skor2": 1,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 3
+            },
+            {
+                "skor1": 1,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 2
+            }
+        ],
+        "jenisOlahraga": 3,
+        "jumlahHari": 2,
+        "jumlahMatch": 12,
+        "jumlahTim": 4,
+        "nama": "anjay slebew",
+        "sistem": "Liga",
+        "tim": [
+            {
+                "kalah": 1,
+                "main": 6,
+                "menang": 3,
+                "nama": "kucing",
+                "poin": 8,
+                "seri": 2
+            },
+            {
+                "kalah": 2,
+                "main": 6,
+                "menang": 3,
+                "nama": "mbe",
+                "poin": 7,
+                "seri": 1
+            },
+            {
+                "kalah": 3,
+                "main": 6,
+                "menang": 2,
+                "nama": "ayam",
+                "poin": 5,
+                "seri": 1
+            },
+            {
+                "kalah": 3,
+                "main": 6,
+                "menang": 1,
+                "nama": "anjing",
+                "poin": 4,
+                "seri": 2
+            }
+        ]
+    },
+    {
+        "format": "Single Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 18,
+        "jumlahHari": 12,
+        "jumlahMatch": 0,
+        "jumlahTim": 3,
+        "nama": "yuk bisa",
+        "sistem": "Swiss",
+        "tim": []
+    },
+    {
+        "format": "Swiss System",
+        "jadwal": [
+            {
+                "deskripsi": "ayam vs anjing",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 1,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": "ayam",
+                "tim2": "anjing"
+            },
+            {
+                "deskripsi": "kancin vs meong",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 2,
+                "skor2": 1,
+                "sudahDimainkan": true,
+                "tim1": "kancin",
+                "tim2": "meong"
+            },
+            {
+                "deskripsi": "ayam vs kancin",
+                "hari": 2,
+                "isBye": false,
+                "skor1": 3,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": "ayam",
+                "tim2": "kancin"
+            },
+            {
+                "deskripsi": "anjing vs meong",
+                "hari": 2,
+                "isBye": false,
+                "skor1": 2,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": "anjing",
+                "tim2": "meong"
+            },
+            {
+                "deskripsi": "ayam vs meong",
+                "hari": 3,
+                "isBye": false,
+                "skor1": 9,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": "ayam",
+                "tim2": "meong"
+            },
+            {
+                "deskripsi": "anjing vs kancin",
+                "hari": 3,
+                "isBye": false,
+                "skor1": 3,
+                "skor2": 6,
+                "sudahDimainkan": true,
+                "tim1": "anjing",
+                "tim2": "kancin"
+            }
+        ],
+        "jenisOlahraga": 15,
+        "jumlahHari": 3,
+        "jumlahMatch": 6,
+        "jumlahTim": 5,
+        "nama": "qaaaaaa",
+        "sistem": "Swiss",
+        "tim": [
+            {
+                "byeRound": false,
+                "lawan": [
+                    1,
+                    2,
+                    3
+                ],
+                "matchPlayed": 3,
+                "nama": "ayam",
+                "poin": 2
+            },
+            {
+                "byeRound": false,
+                "lawan": [
+                    0,
+                    3,
+                    2
+                ],
+                "matchPlayed": 3,
+                "nama": "anjing",
+                "poin": 2
+            },
+            {
+                "byeRound": false,
+                "lawan": [
+                    3,
+                    0,
+                    1
+                ],
+                "matchPlayed": 4,
+                "nama": "kancin",
+                "poin": 2
+            },
+            {
+                "byeRound": false,
+                "lawan": [
+                    2,
+                    1,
+                    0
+                ],
+                "matchPlayed": 4,
+                "nama": "meong",
+                "poin": 0
+            },
+            {
+                "byeRound": false,
+                "lawan": [],
+                "matchPlayed": 0,
+                "nama": "kucing",
+                "poin": 0
+            }
+        ]
+    },
+    {
+        "format": "Double Round Robin",
+        "jadwal": [
+            {
+                "skor1": 1,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 1
+            },
+            {
+                "skor1": 2,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 0
+            },
+            {
+                "skor1": 2,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 2
+            },
+            {
+                "skor1": 3,
+                "skor2": 1,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 0
+            },
+            {
+                "skor1": 1,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 3
+            },
+            {
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 0
+            },
+            {
+                "skor1": 2,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 2
+            },
+            {
+                "skor1": 2,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 1
+            },
+            {
+                "skor1": 2,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 3
+            },
+            {
+                "skor1": 2,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 1
+            },
+            {
+                "skor1": 3,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 3
+            },
+            {
+                "skor1": 3,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 3,
+                "tim2": 2
+            }
+        ],
+        "jenisOlahraga": 3,
+        "jumlahHari": 2,
+        "jumlahMatch": 24,
+        "jumlahTim": 4,
+        "nama": "aaaaaaaaaaaaaa",
+        "sistem": "Liga",
+        "tim": [
+            {
+                "kalah": 0,
+                "main": 6,
+                "menang": 3,
+                "nama": "vvvvvvvv",
+                "poin": 9,
+                "seri": 3
+            },
+            {
+                "kalah": 0,
+                "main": 6,
+                "menang": 2,
+                "nama": "bbbbbb",
+                "poin": 8,
+                "seri": 4
+            },
+            {
+                "kalah": 3,
+                "main": 6,
+                "menang": 1,
+                "nama": "aaaaaaaaaa",
+                "poin": 4,
+                "seri": 2
+            },
+            {
+                "kalah": 3,
+                "main": 6,
+                "menang": 0,
+                "nama": "ddddd",
+                "poin": 3,
+                "seri": 3
+            }
+        ]
+    },
+    {
+        "format": "Single Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 4,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 3,
+        "nama": "aaaaaaaaaaaaaaaaaa",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 3,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 3,
+        "nama": "aaaaaaaaaa",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 3,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 3,
+        "nama": "aaaaaaaaa",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Single Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 14,
+        "jumlahHari": 1,
+        "jumlahMatch": 0,
+        "jumlahTim": 3,
+        "nama": "ANTAP MEn",
+        "sistem": "Swiss",
+        "tim": []
+    },
+    {
+        "format": "Swiss System",
+        "jadwal": [
+            {
+                "deskripsi": "pion terdepan vs 123 raner",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 3,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": "pion terdepan",
+                "tim2": "123 raner"
+            },
+            {
+                "deskripsi": "menang boleh lah vs gak ada lawan",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 1,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": "menang boleh lah",
+                "tim2": "gak ada lawan"
+            },
+            {
+                "deskripsi": "pion terdepan vs menang boleh lah",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 3,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": "pion terdepan",
+                "tim2": "menang boleh lah"
+            },
+            {
+                "deskripsi": "123 raner vs gak ada lawan",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 1,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": "123 raner",
+                "tim2": "gak ada lawan"
+            }
+        ],
+        "jenisOlahraga": 19,
+        "jumlahHari": 1,
+        "jumlahMatch": 4,
+        "jumlahTim": 4,
+        "nama": "MANTAP MEN",
+        "sistem": "Swiss",
+        "tim": [
+            {
+                "byeRound": false,
+                "lawan": [
+                    1,
+                    2
+                ],
+                "matchPlayed": 2,
+                "nama": "pion terdepan",
+                "poin": 2
+            },
+            {
+                "byeRound": false,
+                "lawan": [
+                    2,
+                    1
+                ],
+                "matchPlayed": 4,
+                "nama": "gak ada lawan",
+                "poin": 2
+            },
+            {
+                "byeRound": false,
+                "lawan": [
+                    0,
+                    3
+                ],
+                "matchPlayed": 3,
+                "nama": "123 raner",
+                "poin": 0
+            },
+            {
+                "byeRound": false,
+                "lawan": [
+                    3,
+                    0
+                ],
+                "matchPlayed": 3,
+                "nama": "menang boleh lah",
+                "poin": 0
+            }
+        ]
+    },
+    {
+        "format": "Single Elimination",
+        "jadwal": [
+            {
+                "deskripsi": "a vs b",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 1,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": "a",
+                "tim2": "b"
+            },
+            {
+                "deskripsi": "c vs d",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 2,
+                "skor2": 1,
+                "sudahDimainkan": true,
+                "tim1": "c",
+                "tim2": "d"
+            },
+            {
+                "deskripsi": "e vs f",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 2,
+                "skor2": 3,
+                "sudahDimainkan": true,
+                "tim1": "e",
+                "tim2": "f"
+            },
+            {
+                "deskripsi": "g vs h",
+                "hari": 1,
+                "isBye": false,
+                "skor1": 3,
+                "skor2": 2,
+                "sudahDimainkan": true,
+                "tim1": "g",
+                "tim2": "h"
+            },
+            {
+                "deskripsi": "i vs BYE",
+                "hari": 2,
+                "isBye": true,
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": "i",
+                "tim2": "BYE"
+            },
+            {
+                "deskripsi": "j vs BYE",
+                "hari": 2,
+                "isBye": true,
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": "j",
+                "tim2": "BYE"
+            },
+            {
+                "deskripsi": "k vs BYE",
+                "hari": 2,
+                "isBye": true,
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": "k",
+                "tim2": "BYE"
+            },
+            {
+                "deskripsi": "l vs BYE",
+                "hari": 2,
+                "isBye": true,
+                "skor1": 0,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": "l",
+                "tim2": "BYE"
+            }
+        ],
+        "jenisOlahraga": 8,
+        "jumlahHari": 2,
+        "jumlahMatch": 8,
+        "jumlahTim": 12,
+        "nama": "1234",
+        "sistem": "Gugur Bye",
+        "tim": [
+            {
+                "isBye": false,
+                "nama": "a",
+                "skor": 0
+            },
+            {
+                "isBye": false,
+                "nama": "b",
+                "skor": 0
+            },
+            {
+                "isBye": false,
+                "nama": "c",
+                "skor": 0
+            },
+            {
+                "isBye": false,
+                "nama": "d",
+                "skor": 0
+            },
+            {
+                "isBye": false,
+                "nama": "e",
+                "skor": 0
+            },
+            {
+                "isBye": false,
+                "nama": "f",
+                "skor": 0
+            },
+            {
+                "isBye": false,
+                "nama": "g",
+                "skor": 0
+            },
+            {
+                "isBye": false,
+                "nama": "h",
+                "skor": 0
+            },
+            {
+                "isBye": true,
+                "nama": "i",
+                "skor": 0
+            },
+            {
+                "isBye": true,
+                "nama": "j",
+                "skor": 0
+            },
+            {
+                "isBye": true,
+                "nama": "k",
+                "skor": 0
+            },
+            {
+                "isBye": true,
+                "nama": "l",
+                "skor": 0
+            }
+        ]
     }
 ]

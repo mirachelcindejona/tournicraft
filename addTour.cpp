@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
+#include <regex>
 #include "nlohmann/json.hpp"
 #include "systems/ligaMix.h"
 #include "systems/storage.h"
@@ -18,35 +19,61 @@ void buatTurnamenBaru() {
       cout << "\n=== BUAT TURNAMEN BARU ===\n";
       
       string namaTurnamen;
-      cout << "Masukkan nama turnamen: ";
-      cin.ignore();
-      getline(cin, namaTurnamen);
+      regex validNameRegex("^[a-zA-Z0-9 ]+$");
+      while (true) {
+          cout << "Masukkan nama turnamen: ";
+          cin.ignore();
+          getline(cin, namaTurnamen);
+          if (namaTurnamen.empty()) {
+              cout << "Nama turnamen tidak boleh kosong!\n";
+          } else if (namaTurnamen.length() < 4) {
+              cout << "Nama turnamen harus minimal 4 karakter!\n";
+          } else if (!regex_match(namaTurnamen, validNameRegex)) {
+              cout << "Nama turnamen hanya boleh mengandung huruf, angka, dan spasi!\n";
+          } else {
+              break;
+          }
+      }
       
       int jenisOlahraga;
-      cout << "\nPilih cabang olahraga:\n";
-      cout << "1. Sepak Bola\n";
-      cout << "2. Futsal\n";
-      cout << "3. Handball\n";
-      cout << "4. Tenis Meja\n";
-      cout << "5. Voli\n";
-      cout << "6. Badminton\n";
-      cout << "7. Tenis\n";
-      cout << "8. Taekwondo\n";
-      cout << "9. Basket\n";
-      cout << "10. Karate\n";
-      cout << "11. Catur\n";
-      cout << "12. Panahan\n";
-      cout << "13. Gulat\n";
-      cout << "14. E-sports Valorant\n";
-      cout << "15. E-sports CS:GO\n";
-      cout << "16. E-sports Clash Royale\n";
-      cout << "17. E-sports Dota 2\n";
-      cout << "18. Kartu (Yu-Gi-Oh)\n";
-      cout << "19. Go (permainan strategi)\n";
-      cout << "Pilih opsi (1-19): ";
-      cin >> jenisOlahraga;
+      while (true) {
+          cout << "\nPilih cabang olahraga:\n";
+          cout << "1. Sepak Bola\n";
+          cout << "2. Futsal\n";
+          cout << "3. Handball\n";
+          cout << "4. Tenis Meja\n";
+          cout << "5. Voli\n";
+          cout << "6. Badminton\n";
+          cout << "7. Tenis\n";
+          cout << "8. Taekwondo\n";
+          cout << "9. Basket\n";
+          cout << "10. Karate\n";
+          cout << "11. Catur\n";
+          cout << "12. Panahan\n";
+          cout << "13. Gulat\n";
+          cout << "14. E-sports Valorant\n";
+          cout << "15. E-sports CS:GO\n";
+          cout << "16. E-sports Clash Royale\n";
+          cout << "17. E-sports Dota 2\n";
+          cout << "18. Kartu (Yu-Gi-Oh)\n";
+          cout << "19. Go (permainan strategi)\n";
+          cout << "Pilih opsi (1-19): ";
+          if (!(cin >> jenisOlahraga)) {
+              cout << "Input tidak valid. Silakan masukkan nomor yang sesuai.\n";
+              cin.clear();
+              cin.ignore(numeric_limits<streamsize>::max(), '\n');
+              continue;
+          }
+          if (jenisOlahraga < 1 || jenisOlahraga > 19) {
+              cout << "Pilihan cabang olahraga tidak valid. Silakan pilih ulang.\n";
+          } else {
+              break;
+          }
+      }
       
       int jumlahTim;
+      regex validTeamNameRegex("^[a-zA-Z0-9 ]+$");
+      vector<string> namaTimList;
       do {
             cout << "Masukkan jumlah tim: ";
             cin >> jumlahTim;
@@ -54,10 +81,22 @@ void buatTurnamenBaru() {
                   cout << "Jumlah tim harus minimal 2!\n";
             }
       } while (jumlahTim < 2);
-      
+
       int jumlahHari;
-      cout << "Masukkan jumlah hari turnamen: ";
-      cin >> jumlahHari;
+      while (true) {
+          cout << "Masukkan jumlah hari turnamen: ";
+          if (!(cin >> jumlahHari)) {
+              cout << "Input tidak valid. Harap masukkan angka.\n";
+              cin.clear();
+              cin.ignore(numeric_limits<streamsize>::max(), '\n');
+              continue;
+          }
+          if (jumlahHari <= 0) {
+              cout << "Jumlah hari harus lebih dari 0!\n";
+              continue;
+          }
+          break;
+      }
       
       vector<string> sistemTersedia;
       cout << "\nSistem pertandingan yang direkomendasikan:\n";
@@ -112,17 +151,23 @@ void buatTurnamenBaru() {
             cout << i+1 << ". " << sistemTersedia[i] << endl;
       }
       
-      // Pilih sistem pertandingan
-      int pilihanSistem;
-      cout << "Pilih sistem pertandingan (input nomor): ";
-      cin >> pilihanSistem;
-      
-      if (pilihanSistem < 1 || pilihanSistem > sistemTersedia.size()) {
-            cout << "Pilihan sistem tidak valid.\n";
-            return;
-      }
-      
-      string sistemTerpilih = sistemTersedia[pilihanSistem-1];
+int pilihanSistem;
+while (true) {
+    cout << "Pilih sistem pertandingan (input nomor): ";
+    if (!(cin >> pilihanSistem)) {
+        cout << "Input tidak valid. Silakan masukkan nomor yang sesuai dari daftar.\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        continue;
+    }
+    if (pilihanSistem < 1 || pilihanSistem > sistemTersedia.size()) {
+        cout << "Pilihan sistem '" << pilihanSistem << "' tidak valid. Silakan pilih nomor yang sesuai dari daftar.\n";
+    } else {
+        break;
+    }
+}
+
+string sistemTerpilih = sistemTersedia[pilihanSistem-1];
       
       // Simpan data turnamen ke JSON
       json turnamenData = loadTurnamen();
