@@ -1385,5 +1385,135 @@
                 "skor": 0
             }
         ]
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [
+            {
+                "skor1": 1,
+                "skor2": 0,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 1
+            },
+            {
+                "skor1": 2,
+                "skor2": 1,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 2
+            },
+            {
+                "skor1": 2,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 0,
+                "tim2": 3
+            },
+            {
+                "skor1": 2,
+                "skor2": 5,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 2
+            },
+            {
+                "skor1": 1,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 1,
+                "tim2": 3
+            },
+            {
+                "skor1": 6,
+                "skor2": 4,
+                "sudahDimainkan": true,
+                "tim1": 2,
+                "tim2": 3
+            }
+        ],
+        "jenisOlahraga": 1,
+        "jumlahHari": 4,
+        "jumlahMatch": 6,
+        "jumlahTim": 9,
+        "nama": "ramadan cup",
+        "sistem": "Liga",
+        "tim": [
+            {
+                "kalah": 1,
+                "main": 3,
+                "menang": 2,
+                "nama": "keren",
+                "poin": 6,
+                "seri": 0
+            },
+            {
+                "kalah": 0,
+                "main": 2,
+                "menang": 2,
+                "nama": "cihuy",
+                "poin": 6,
+                "seri": 0
+            },
+            {
+                "kalah": 2,
+                "main": 3,
+                "menang": 1,
+                "nama": "kece",
+                "poin": 3,
+                "seri": 0
+            },
+            {
+                "kalah": 3,
+                "main": 4,
+                "menang": 1,
+                "nama": "mantap",
+                "poin": 3,
+                "seri": 0
+            }
+        ]
+    },
+    {
+        "format": "Single/Double Round Robin",
+        "jadwal": [],
+        "jenisOlahraga": 1,
+        "jumlahHari": 3,
+        "jumlahMatch": 0,
+        "jumlahTim": 4,
+        "nama": "ramadan cup",
+        "sistem": "Liga",
+        "tim": []
+    },
+    {
+        "format": "Single Elimination",
+        "jadwal": [
+            {
+                "babak": 1,
+                "deskripsi": "keren vs cihuy",
+                "skor1": 3,
+                "skor2": 1,
+                "sudahDimainkan": true,
+                "tim1": "keren",
+                "tim2": "cihuy"
+            }
+        ],
+        "jenisOlahraga": 1,
+        "jumlahHari": 1,
+        "jumlahMatch": 1,
+        "jumlahTim": 2,
+        "nama": "ramadan cup 2",
+        "sistem": "Knockout",
+        "tim": [
+            {
+                "isEliminated": false,
+                "nama": "keren",
+                "skor": 0
+            },
+            {
+                "isEliminated": false,
+                "nama": "cihuy",
+                "skor": 0
+            }
+        ]
     }
 ]

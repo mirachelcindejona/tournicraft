@@ -4,7 +4,7 @@
 // Array dinamis untuk menyimpan tim
 static TimBye* tim = nullptr;
 // Linked list untuk menyimpan jadwal pertandingan
-static JadwalBye jadwalB;
+static JadwalBye jadwal;
 
 static int jumlahTim = 0, jumlahHari = 0, jumlahMatchB = 0;
 static int jenisOlahraga = 0;
@@ -28,7 +28,6 @@ int previousPowerOfTwo(int n) {
     return power;
 }
 
-// Fungsi untuk memuat data turnamen terakhir
 // Fungsi untuk memuat data turnamen terakhir
 bool loadTurnamenByeData() {
     json turnamenData = loadTurnamen();
@@ -76,15 +75,15 @@ void tambahPertandinganBye(TimBye tim1, TimBye tim2, bool isBye = false) {
     newNode->sudahDimainkan = false;
     newNode->next = nullptr;
     
-    if (jadwalB.head == nullptr) {
-        jadwalB.head = newNode;
-        jadwalB.tail = newNode;
+    if (jadwal.head == nullptr) {
+        jadwal.head = newNode;
+        jadwal.tail = newNode;
     } else {
-        jadwalB.tail->next = newNode;
-        jadwalB.tail = newNode;
+        jadwal.tail->next = newNode;
+        jadwal.tail = newNode;
     }
     
-    jadwalB.jumlah++;
+    jadwal.jumlah++;
     jumlahMatchB++;
 }
 
@@ -101,7 +100,7 @@ void inputDataTimBye() {
 
 // Fungsi untuk menampilkan jadwal pertandingan
 void tampilkanJadwalPertandinganBye() {
-    if (jadwalB.jumlah == 0) {
+    if (jadwal.jumlah == 0) {
         cout << "Belum ada jadwal pertandingan.\n";
         return;
     }
@@ -109,7 +108,7 @@ void tampilkanJadwalPertandinganBye() {
     int matchPerHari = jumlahMatchB / jumlahHari;
     int sisa = jumlahMatchB % jumlahHari;
     
-    PertandinganBye* current = jadwalB.head;
+    PertandinganBye* current = jadwal.head;
     int idx = 0;
     
     for (int h = 0; h < jumlahHari; h++) {
@@ -168,7 +167,7 @@ void buatBracketGugurBye() {
 
 // Fungsi untuk input skor pertandingan pada hari tertentu
 void inputSkorHariBye(int hari) {
-    if (jadwalB.jumlah == 0) {
+    if (jadwal.jumlah == 0) {
         cout << "Belum ada jadwal pertandingan.\n";
         return;
     }
@@ -190,7 +189,7 @@ void inputSkorHariBye(int hari) {
     cout << "\n=== Input Skor Pertandingan Hari " << hari << " ===\n";
     
     // Navigasi ke pertandingan pertama hari ini
-    PertandinganBye* current = jadwalB.head;
+    PertandinganBye* current = jadwal.head;
     for (int i = 0; i < startIdx && current != nullptr; i++) {
         current = current->next;
     }
@@ -259,7 +258,7 @@ void simpanHasilTurnamenBye() {
     
     // Buat data jadwal pertandingan
     json jadwalData = json::array();
-    PertandinganBye* current = jadwalB.head;
+    PertandinganBye* current = jadwal.head;
     int hariKe = 1;
     int matchPerHari = jumlahMatchB / jumlahHari;
     int sisa = jumlahMatchB % jumlahHari;
@@ -331,15 +330,15 @@ void bersihkanMemoriBye() {
     }
     
     // Hapus linked list jadwal
-    PertandinganBye* current = jadwalB.head;
+    PertandinganBye* current = jadwal.head;
     while (current != nullptr) {
         PertandinganBye* temp = current;
         current = current->next;
         delete temp;
     }
-    jadwalB.head = nullptr;
-    jadwalB.tail = nullptr;
-    jadwalB.jumlah = 0;
+    jadwal.head = nullptr;
+    jadwal.tail = nullptr;
+    jadwal.jumlah = 0;
 }
 
 // Fungsi utama sistem gugur bye
