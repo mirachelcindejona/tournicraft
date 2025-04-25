@@ -165,7 +165,6 @@ void buatBracketGugurBye() {
     }
 }
 
-// Fungsi untuk input skor pertandingan pada hari tertentu
 void inputSkorHariBye(int hari) {
     if (jadwal.jumlah == 0) {
         cout << "Belum ada jadwal pertandingan.\n";
@@ -175,7 +174,6 @@ void inputSkorHariBye(int hari) {
     int matchPerHari = jumlahMatchB / jumlahHari;
     int sisa = jumlahMatchB % jumlahHari;
     
-    // Hitung indeks awal untuk hari tertentu
     int startIdx = 0;
     int sisaTemp = sisa;
     for (int h = 0; h < hari - 1; h++) {
@@ -194,43 +192,38 @@ void inputSkorHariBye(int hari) {
         current = current->next;
     }
     
-    // Input skor untuk setiap pertandingan hari ini
     for (int i = 0; i < matchHariIni && current != nullptr; i++) {
         if (!current->isBye) {
-            try {
-                cout << "\nPertandingan: " << current->deskripsi << endl;
-                cout << "Masukkan skor " << current->tim1.nama << ": ";
-                cin >> current->skor1;
-                if (cin.fail()) {
+            while (true) {
+                try {
+                    cout << "\nPertandingan: " << current->deskripsi << endl;
+                    cout << "Masukkan skor " << current->tim1.nama << ": ";
+                    cin >> current->skor1;
+                    if (cin.fail()) {
+                        cin.clear();
+                        cin.ignore(10000, '\n');
+                        throw runtime_error("Input harus berupa angka");
+                    }
+                    
+                    cout << "Masukkan skor " << current->tim2.nama << ": ";
+                    cin >> current->skor2;
+                    if (cin.fail()) {
+                        cin.clear();
+                        cin.ignore(10000, '\n');
+                        throw runtime_error("Input harus berupa angka");
+                    }
+                    
+                    if (current->skor1 == current->skor2) {
+                        cout << "Skor imbang tidak diperbolehkan dalam sistem gugur, silakan input ulang.\n";
+                        continue;
+                    }
+                    
+                    break; // valid input, keluar dari loop
+                } catch (const exception& e) {
+                    cout << "Error: " << e.what() << ". Silakan coba lagi.\n";
                     cin.clear();
                     cin.ignore(10000, '\n');
-                    throw runtime_error("Input harus berupa angka");
                 }
-                
-                cout << "Masukkan skor " << current->tim2.nama << ": ";
-                cin >> current->skor2;
-                if (cin.fail()) {
-                    cin.clear();
-                    cin.ignore(10000, '\n');
-                    throw runtime_error("Input harus berupa angka");
-                }
-                
-                // Tentukan pemenang
-                if (current->skor1 > current->skor2) {
-                    cout << current->tim1.nama << " menang dengan skor " << current->skor1 << "-" << current->skor2 << endl;
-                    current->tim1.skor = current->skor1;
-                } else if (current->skor1 < current->skor2) {
-                    cout << current->tim2.nama << " menang dengan skor " << current->skor2 << "-" << current->skor1 << endl;
-                    current->tim2.skor = current->skor2;
-                } else {
-                    cout << "Skor imbang tidak diperbolehkan dalam sistem gugur, silakan input ulang.\n";
-                    i--; // Ulangi pertandingan ini
-                    continue;
-                }
-            } catch (const exception& e) {
-                cout << "Error: " << e.what() << ". Silakan coba lagi.\n";
-                i--; // Ulangi pertandingan ini
-                continue;
             }
         } else {
             cout << "\n" << current->tim1.nama << " mendapat BYE\n";
