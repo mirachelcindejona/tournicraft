@@ -33,10 +33,10 @@ void menuOperator() {
             cout << "2. Keluar\n";
             cout << "Pilih menu: ";
             if (!(cin >> pilihan)) {
-                cout << "Input tidak valid. Silakan coba lagi.\n";
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                continue;
+                  cout << "Input tidak valid. Silakan coba lagi.\n";
+                  cin.clear();
+                  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                  continue;
             }
 
             switch (pilihan) {
@@ -66,10 +66,10 @@ void menuUtama() {
             cout << "3. Keluar Aplikasi\n";
             cout << "Pilih menu: ";
             if (!(cin >> pilihan)) {
-                cout << "Input tidak valid. Silakan coba lagi.\n";
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                continue;
+                  cout << "Input tidak valid. Silakan coba lagi.\n";
+                  cin.clear();
+                  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                  continue;
             }
 
             switch (pilihan) {

@@ -3,6 +3,7 @@
 #include <string>
 #include <iomanip>
 #include <sstream>
+#include <conio.h>
 #include <functional>
 #include "nlohmann/json.hpp"
 #include "auth/auth.h"
@@ -75,6 +76,27 @@ int findUserIndex(const json& users, const string& username) {
    return -1;
 }
 
+string inputPassword() {
+   string password;
+   char ch;
+   while (true) {
+      ch = _getch(); // baca karakter tanpa echo
+      if (ch == 13) { // enter
+         cout << endl;
+         break;
+      } else if (ch == 8) { // backspace
+         if (!password.empty()) {
+            password.pop_back();
+            cout << "\b \b"; // hapus bintang di layar
+         }
+      } else {
+         password.push_back(ch);
+         cout << '*';
+      }
+   }
+   return password;
+}
+
 void registerOperator() {
    string username, password;
    cout << "\n=== REGISTRASI OPERATOR ===\n";
@@ -103,7 +125,8 @@ void registerOperator() {
    }
 
    cout << "Masukkan password: ";
-   cin >> password;
+   password = inputPassword();
+
 
    if (password.length() < 6) {
       cout << "Password harus minimal 6 karakter!\n";
@@ -157,7 +180,7 @@ bool loginOperator() {
    }
 
    cout << "Password: ";
-   cin >> password;
+   password = inputPassword();
 
    if (password.length() < 6) {
       cout << "Password harus minimal 6 karakter!\n";
