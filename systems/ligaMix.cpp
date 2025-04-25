@@ -1,7 +1,9 @@
 #include "systems/ligaMix.h"
 #include <fstream>
 #include <sstream>
+#include <iomanip>  // Untuk setw
 #include "systems/storage.h"
+#include <regex>
 
 // Array dinamis untuk menyimpan tim
 static TimLiga* tim = nullptr;
@@ -72,9 +74,27 @@ void tambahPertandingan(int tim1, int tim2) {
 // Fungsi untuk input data tim
 void inputDataTim() {
     cin.ignore(); // Bersihkan newline
+    regex validTeamNameRegex("^[a-zA-Z0-9 ]+$");
     for (int i = 0; i < jumlahTim; i++) {
-        cout << "\nNama tim ke-" << i + 1 << ": ";
-        getline(cin, tim[i].nama);
+        string inputNama;
+        while (true) {
+            cout << "\nNama tim ke-" << i + 1 << ": ";
+            getline(cin, inputNama);
+            if (inputNama.empty()) {
+                cout << "Nama tim tidak boleh kosong! Silakan masukkan nama tim.\n";
+                continue;
+            }
+            if (!regex_match(inputNama, validTeamNameRegex)) {
+                cout << "Nama tim tidak boleh mengandung simbol! Silakan masukkan nama tim yang valid.\n";
+                continue;
+            }
+            if (i > 0 && inputNama == tim[i - 1].nama) {
+                cout << "Nama tim tidak boleh sama dengan tim sebelumnya. Silakan masukkan nama yang berbeda.\n";
+                continue;
+            }
+            tim[i].nama = inputNama;
+            break;
+        }
     }
 }
 
@@ -225,16 +245,57 @@ void inputSkorHari(int hari) {
     
     // Input skor untuk setiap pertandingan hari ini
     for (int i = 0; i < matchHariIni && current != nullptr; i++) {
+        int skor1, skor2;
         cout << "\n" << tim[current->tim1].nama << " vs " << tim[current->tim2].nama << "\n";
-        cout << "Skor " << tim[current->tim1].nama << ": ";
-        cin >> current->skor1;
-        cout << "Skor " << tim[current->tim2].nama << ": ";
-        cin >> current->skor2;
+        
+        while (true) {
+            cout << "Skor " << tim[current->tim1].nama << ": ";
+            if (!(cin >> skor1)) {
+                cout << "Input tidak valid. Harap masukkan angka.\n";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
+            break;
+        }
+        
+        while (true) {
+            cout << "Skor " << tim[current->tim2].nama << ": ";
+            if (!(cin >> skor2)) {
+                cout << "Input tidak valid. Harap masukkan angka.\n";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
+            break;
+        }
+        
+        // Validasi pertandingan terakhir tidak boleh seri
+        bool isLastMatch = (i == matchHariIni - 1) && (hari == jumlahHari);
+        if (isLastMatch && skor1 == skor2) {
+            cout << "Pertandingan terakhir tidak boleh berakhir seri. Harap ulangi input skor.\n";
+            i--; // ulang input skor pertandingan ini
+            continue;
+        }
+        
+        current->skor1 = skor1;
+        current->skor2 = skor2;
         current->sudahDimainkan = true;
         
         updateStatistikTim(current);
         current = current->next;
     }
+    
+    // Sesuaikan jumlah pertandingan yang sudah dimainkan jika ada pertandingan diulang
+    int playedMatches = 0;
+    PertandinganNode* temp = jadwal.head;
+    while (temp != nullptr) {
+        if (temp->sudahDimainkan) {
+            playedMatches++;
+        }
+        temp = temp->next;
+    }
+    jumlahMatch = playedMatches;
 }
 
 // Fungsi untuk menukar posisi tim dalam array
@@ -256,46 +317,54 @@ void urutkanKlasemen() {
             else if (tim[j].poin == tim[j + 1].poin && tim[j].menang < tim[j + 1].menang) {
                 tukarTim(&tim[j], &tim[j + 1]);
             }
+            // Jika poin dan kemenangan sama, urutkan berdasarkan selisih gol (untuk sepak bola/futsal)
+            else if (tim[j].poin == tim[j + 1].poin && tim[j].menang == tim[j + 1].menang) {
+                // Tambahkan tiebreaker tambahan untuk memastikan hanya ada satu juara
+                // Misalnya berdasarkan seri lebih sedikit (lebih banyak hasil pasti)
+                if (tim[j].seri > tim[j + 1].seri) {
+                    tukarTim(&tim[j], &tim[j + 1]);
+                }
+                // Jika masih sama, berdasarkan kekalahan lebih sedikit
+                else if (tim[j].seri == tim[j + 1].seri && tim[j].kalah > tim[j + 1].kalah) {
+                    tukarTim(&tim[j], &tim[j + 1]);
+                }
+            }
         }
     }
 }
 
-// Fungsi untuk menampilkan klasemen
+// Fungsi untuk menampilkan klasemen dengan tabel yang rapi
 void tampilkanKlasemen() {
     urutkanKlasemen();
-    cout << left << setw(15) << "Tim" << setw(6) << "M" << setw(6) << "W" 
-         << setw(6) << "D" << setw(6) << "L" << setw(6) << "Pts" << endl;
+    
+    // Menampilkan batas atas tabel
+    cout << "\n+-----+---------------+-----+-----+-----+-----+------+\n";
+    cout << "| No. |      Tim      |  M  |  W  |  D  |  L  | Pts  |\n";
+    cout << "+-----+---------------+-----+-----+-----+-----+------+\n";
+    
+    // Isi tabel
     for (int i = 0; i < jumlahTim; i++) {
-        cout << left << setw(15) << tim[i].nama << setw(6) << tim[i].main 
-             << setw(6) << tim[i].menang << setw(6) << tim[i].seri 
-             << setw(6) << tim[i].kalah << setw(6) << tim[i].poin << endl;
+        cout << "| " << setw(3) << i + 1 << " | " 
+             << setw(13) << left << tim[i].nama << " | " 
+             << setw(3) << right << tim[i].main << " | " 
+             << setw(3) << tim[i].menang << " | " 
+             << setw(3) << tim[i].seri << " | " 
+             << setw(3) << tim[i].kalah << " | " 
+             << setw(4) << tim[i].poin << " |\n";
     }
+    
+    // Menampilkan batas bawah tabel
+    cout << "+-----+---------------+-----+-----+-----+-----+------+\n";
 }
 
 // Fungsi untuk menampilkan pemenang
 void tampilkanPemenang() {
     urutkanKlasemen();
     
-    // Cek jika ada tim yang seimbang di puncak klasemen
-    bool adaJuaraBersama = false;
-    if (jumlahTim > 1) {
-        adaJuaraBersama = (tim[0].poin == tim[1].poin && tim[0].menang == tim[1].menang);
-    }
-    
     cout << "\n****************************************\n";
-    if (adaJuaraBersama) {
-        cout << "JUARA BERSAMA:\n";
-        int i = 0;
-        while (i < jumlahTim - 1 && tim[i].poin == tim[i + 1].poin && tim[i].menang == tim[i + 1].menang) {
-            cout << "- " << tim[i].nama << endl;
-            i++;
-        }
-        cout << "- " << tim[i].nama << endl;
-    } else {
-        cout << "JUARA TURNAMEN: " << tim[0].nama << endl;
-        cout << "Total Poin: " << tim[0].poin << endl;
-        cout << "Menang: " << tim[0].menang << " | Seri: " << tim[0].seri << " | Kalah: " << tim[0].kalah << endl;
-    }
+    cout << "JUARA TURNAMEN: " << tim[0].nama << endl;
+    cout << "Total Poin: " << tim[0].poin << endl;
+    cout << "Menang: " << tim[0].menang << " | Seri: " << tim[0].seri << " | Kalah: " << tim[0].kalah << endl;
     cout << "****************************************\n";
 }
 
@@ -426,9 +495,16 @@ void sistemLiga() {
     // Buat jadwal pertandingan
     if (jenisOlahraga == 1 || jenisOlahraga == 2 || jenisOlahraga == 5) {
         cout << "\n1. Single Round Robin\n2. Double Round Robin\n";
-        cout << "Pilih format pertandingan (1/2): ";
         int format;
-        cin >> format;
+        while (true) {
+            cout << "Pilih format pertandingan (1/2): ";
+            cin >> format;
+            if (format == 1 || format == 2) {
+                break;
+            } else {
+                cout << "Pilihan format tidak valid. Silakan pilih 1 atau 2.\n";
+            }
+        }
         if (format == 1) buatJadwalSingleRoundRobin();
         else buatJadwalDoubleRoundRobin();
     } else if (jenisOlahraga == 3) {

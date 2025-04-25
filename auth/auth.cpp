@@ -3,6 +3,7 @@
 #include <string>
 #include <iomanip>
 #include <sstream>
+#include <conio.h>
 #include <functional>
 #include "nlohmann/json.hpp"
 #include "auth/auth.h"
@@ -26,6 +27,26 @@ string hashPassword(const string& password) {
    stringstream ss;
    ss << hex << setw(16) << setfill('0') << hashValue;
    return ss.str();
+}
+
+// Fungsi untuk validasi username hanya mengizinkan huruf, angka, dan underscore
+bool isValidUsername(const string& username) {
+   for (char c : username) {
+      if (!isalnum(c) && c != '_') {
+         return false;
+      }
+   }
+   return true;
+}
+
+// Fungsi untuk validasi password harus mengandung setidaknya satu karakter alfanumerik
+bool isValidPassword(const string& password) {
+   for (char c : password) {
+      if (isalnum(c)) {
+         return true;
+      }
+   }
+   return false;
 }
 
 json loadOperators() {
@@ -55,11 +76,47 @@ int findUserIndex(const json& users, const string& username) {
    return -1;
 }
 
+string inputPassword() {
+   string password;
+   char ch;
+   while (true) {
+      ch = _getch(); // baca karakter tanpa echo
+      if (ch == 13) { // enter
+         cout << endl;
+         break;
+      } else if (ch == 8) { // backspace
+         if (!password.empty()) {
+            password.pop_back();
+            cout << "\b \b"; // hapus bintang di layar
+         }
+      } else {
+         password.push_back(ch);
+         cout << '*';
+      }
+   }
+   return password;
+}
+
 void registerOperator() {
    string username, password;
    cout << "\n=== REGISTRASI OPERATOR ===\n";
    cout << "Masukkan username: ";
    cin >> username;
+
+   if (username.empty() || username.find_first_not_of(' ') == string::npos) {
+      cout << "Username tidak boleh kosong!\n";
+      return;
+   }
+
+   if (username.length() < 3) {
+      cout << "Username harus minimal 3 karakter!\n";
+      return;
+   }
+
+   if (!isValidUsername(username)) {
+      cout << "Username tidak boleh mengandung simbol!\n";
+      return;
+   }
 
    json users = loadOperators();
    if (usernameExists(users, username)) {
@@ -68,15 +125,33 @@ void registerOperator() {
    }
 
    cout << "Masukkan password: ";
-   cin >> password;
+   password = inputPassword();
 
-   // Hash password sebelum disimpan
+
+   if (password.length() < 6) {
+      cout << "Password harus minimal 6 karakter!\n";
+      return;
+   }
+
+   if (!isValidPassword(password)) {
+      cout << "Password harus mengandung setidaknya satu karakter alfanumerik!\n";
+      return;
+   }
+
    string hashedPassword = hashPassword(password);
 
    json newUser = {
       {"username", username},
       {"password", hashedPassword}
    };
+
+   for (const auto& user : users) {
+      if (user["password"] == hashedPassword) {
+         cout << "Password sudah digunakan, silakan gunakan password lain!\n";
+         return;
+      }
+   }
+
    users.push_back(newUser);
    saveOperators(users);
 
@@ -88,8 +163,29 @@ bool loginOperator() {
    cout << "\n=== LOGIN OPERATOR ===\n";
    cout << "Username: ";
    cin >> username;
+
+   if (username.empty() || username.find_first_not_of(' ') == string::npos) {
+      cout << "Username tidak boleh kosong!\n";
+      return false;
+   }
+
+   if (username.length() < 3) {
+      cout << "Username harus minimal 3 karakter!\n";
+      return false;
+   }
+
+   if (!isValidUsername(username)) {
+      cout << "Username tidak boleh mengandung simbol!\n";
+      return false;
+   }
+
    cout << "Password: ";
-   cin >> password;
+   password = inputPassword();
+
+   if (password.length() < 6) {
+      cout << "Password harus minimal 6 karakter!\n";
+      return false;
+   }
 
    json users = loadOperators();
    int idx = findUserIndex(users, username);

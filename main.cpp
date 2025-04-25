@@ -32,7 +32,12 @@ void menuOperator() {
             cout << "1. Buat turnamen baru\n";
             cout << "2. Keluar\n";
             cout << "Pilih menu: ";
-            cin >> pilihan;
+            if (!(cin >> pilihan)) {
+                  cout << "Input tidak valid. Silakan coba lagi.\n";
+                  cin.clear();
+                  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                  continue;
+            }
 
             switch (pilihan) {
             case 1:
@@ -44,7 +49,8 @@ void menuOperator() {
                   aktif = false;
                   break;
             default:
-                  cout << "Pilihan tidak valid.\n";
+                  cout << "Pilihan tidak valid. Silakan coba lagi.\n";
+                  break;
             }
       }
 }
@@ -59,7 +65,12 @@ void menuUtama() {
             cout << "2. Login sebagai Operator\n";
             cout << "3. Keluar Aplikasi\n";
             cout << "Pilih menu: ";
-            cin >> pilihan;
+            if (!(cin >> pilihan)) {
+                  cout << "Input tidak valid. Silakan coba lagi.\n";
+                  cin.clear();
+                  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                  continue;
+            }
 
             switch (pilihan) {
             case 1:
@@ -76,6 +87,7 @@ void menuUtama() {
                   break;
             default:
                   cout << "Pilihan tidak valid. Silakan coba lagi.\n";
+                  break;
             }
       }
 }
