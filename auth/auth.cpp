@@ -1,3 +1,5 @@
+// Modifikasi file auth.cpp untuk menambahkan fungsi clear screen
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -5,6 +7,7 @@
 #include <sstream>
 #include <conio.h>
 #include <functional>
+#include <limits> // Tambahkan header ini untuk numeric_limits
 #include "nlohmann/json.hpp"
 #include "auth/auth.h"
 
@@ -14,6 +17,9 @@ using json = nlohmann::json;
 // Referensi variabel dari main.cpp
 extern bool isLoggedIn;
 extern string currentUser;
+
+// Fungsi clear screen dari main.cpp
+extern void clearScreen();
 
 // Path file untuk menyimpan data user
 const string USERS_FILE = "data/operators.json";
@@ -99,107 +105,177 @@ string inputPassword() {
 
 void registerOperator() {
    string username, password;
-   cout << "\n=== REGISTRASI OPERATOR ===\n";
-   cout << "Masukkan username: ";
-   cin >> username;
+   bool registrationSuccess = false;
+   
+   while (!registrationSuccess) {
+      clearScreen();
+      cout << "\n=== REGISTRASI OPERATOR ===\n";
+      cout << "Masukkan username: ";
+      cin >> username;
 
-   if (username.empty() || username.find_first_not_of(' ') == string::npos) {
-      cout << "Username tidak boleh kosong!\n";
-      return;
-   }
+      if (username.empty() || username.find_first_not_of(' ') == string::npos) {
+         cout << "Username tidak boleh kosong! Silakan coba lagi.\n";
+         cout << "Tekan Enter untuk melanjutkan...";
+         cin.ignore();
+         cin.get();
+         continue;
+      }
 
-   if (username.length() < 3) {
-      cout << "Username harus minimal 3 karakter!\n";
-      return;
-   }
+      if (username.length() < 3) {
+         cout << "Username harus minimal 3 karakter! Silakan coba lagi.\n";
+         cout << "Tekan Enter untuk melanjutkan...";
+         cin.ignore();
+         cin.get();
+         continue;
+      }
 
-   if (!isValidUsername(username)) {
-      cout << "Username tidak boleh mengandung simbol!\n";
-      return;
-   }
+      if (!isValidUsername(username)) {
+         cout << "Username tidak boleh mengandung simbol! Silakan coba lagi.\n";
+         cout << "Tekan Enter untuk melanjutkan...";
+         cin.ignore();
+         cin.get();
+         continue;
+      }
 
-   json users = loadOperators();
-   if (usernameExists(users, username)) {
-      cout << "Username sudah digunakan!\n";
-      return;
-   }
+      json users = loadOperators();
+      if (usernameExists(users, username)) {
+         cout << "Username sudah digunakan! Silakan coba username lain.\n";
+         cout << "Tekan Enter untuk melanjutkan...";
+         cin.ignore();
+         cin.get();
+         continue;
+      }
 
-   cout << "Masukkan password: ";
-   password = inputPassword();
+      bool passwordValid = false;
+      while (!passwordValid) {
+         cout << "Masukkan password: ";
+         password = inputPassword();
 
+         if (password.length() < 6) {
+            cout << "Password harus minimal 6 karakter! Silakan coba lagi.\n";
+            continue;
+         }
 
-   if (password.length() < 6) {
-      cout << "Password harus minimal 6 karakter!\n";
-      return;
-   }
+         if (!isValidPassword(password)) {
+            cout << "Password harus mengandung setidaknya satu karakter alfanumerik! Silakan coba lagi.\n";
+            continue;
+         }
 
-   if (!isValidPassword(password)) {
-      cout << "Password harus mengandung setidaknya satu karakter alfanumerik!\n";
-      return;
-   }
+         // Password valid
+         passwordValid = true;
+         
+         json newUser = {
+            {"username", username},
+            {"password", hashPassword(password)}
+         };
 
-   string hashedPassword = hashPassword(password);
+         users.push_back(newUser);
+         saveOperators(users);
 
-   json newUser = {
-      {"username", username},
-      {"password", hashedPassword}
-   };
-
-   for (const auto& user : users) {
-      if (user["password"] == hashedPassword) {
-         cout << "Password sudah digunakan, silakan gunakan password lain!\n";
-         return;
+         cout << "Registrasi berhasil!\n";
+         registrationSuccess = true;
       }
    }
-
-   users.push_back(newUser);
-   saveOperators(users);
-
-   cout << "Registrasi berhasil!\n";
 }
 
 bool loginOperator() {
    string username, password;
-   cout << "\n=== LOGIN OPERATOR ===\n";
-   cout << "Username: ";
-   cin >> username;
-
-   if (username.empty() || username.find_first_not_of(' ') == string::npos) {
-      cout << "Username tidak boleh kosong!\n";
-      return false;
-   }
-
-   if (username.length() < 3) {
-      cout << "Username harus minimal 3 karakter!\n";
-      return false;
-   }
-
-   if (!isValidUsername(username)) {
-      cout << "Username tidak boleh mengandung simbol!\n";
-      return false;
-   }
-
-   cout << "Password: ";
-   password = inputPassword();
-
-   if (password.length() < 6) {
-      cout << "Password harus minimal 6 karakter!\n";
-      return false;
-   }
-
-   json users = loadOperators();
-   int idx = findUserIndex(users, username);
-
-   // Hash password yang diinput dan bandingkan dengan hash yang tersimpan
-   string hashedPassword = hashPassword(password);
+   bool loginSuccess = false;
+   int attempts = 0;
    
-   if (idx != -1 && users[idx]["password"] == hashedPassword) {
-      currentUser = username;
-      isLoggedIn = true;
-      cout << "Login berhasil! Selamat datang, " << username << ".\n";
-      return true;
-   }
+   while (!loginSuccess && attempts < 3) {
+      clearScreen();
+      cout << "\n=== LOGIN OPERATOR ===\n";
+      if (attempts > 0) {
+         cout << "Percobaan login ke-" << attempts + 1 << " dari 3\n";
+      }
+      
+      cout << "Username: ";
+      cin >> username;
 
-   cout << "Login gagal! Username atau password salah.\n";
+      if (username.empty() || username.find_first_not_of(' ') == string::npos) {
+         cout << "Username tidak boleh kosong! Silakan coba lagi.\n";
+         attempts++;
+         cout << "Tekan Enter untuk melanjutkan...";
+         cin.ignore();
+         cin.get();
+         continue;
+      }
+
+      if (username.length() < 3) {
+         cout << "Username harus minimal 3 karakter! Silakan coba lagi.\n";
+         attempts++;
+         cout << "Tekan Enter untuk melanjutkan...";
+         cin.ignore();
+         cin.get();
+         continue;
+      }
+
+      if (!isValidUsername(username)) {
+         cout << "Username tidak boleh mengandung simbol! Silakan coba lagi.\n";
+         attempts++;
+         cout << "Tekan Enter untuk melanjutkan...";
+         cin.ignore();
+         cin.get();
+         continue;
+      }
+
+      json users = loadOperators();
+      int idx = findUserIndex(users, username);
+      
+      if (idx == -1) {
+         cout << "Username tidak ditemukan! Silakan coba lagi.\n";
+         attempts++;
+         cout << "Tekan Enter untuk melanjutkan...";
+         cin.ignore();
+         cin.get();
+         continue;
+      }
+
+      bool passwordValid = false;
+      int passwordAttempts = 0;
+      
+      while (!passwordValid && passwordAttempts < 3) {
+         cout << "Password: ";
+         password = inputPassword();
+
+         if (password.length() < 6) {
+            cout << "Password harus minimal 6 karakter! Silakan coba lagi.\n";
+            passwordAttempts++;
+            continue;
+         }
+
+         // Hash password yang diinput dan bandingkan dengan hash yang tersimpan
+         string hashedPassword = hashPassword(password);
+         
+         if (users[idx]["password"] == hashedPassword) {
+            currentUser = username;
+            isLoggedIn = true;
+            cout << "Login berhasil! Selamat datang, " << username << ".\n";
+            loginSuccess = true;
+            passwordValid = true;
+            cout << "Tekan Enter untuk melanjutkan...";
+            cin.ignore();
+            cin.get();
+            return true;
+         } else {
+            cout << "Password salah! Silakan coba lagi.\n";
+            passwordAttempts++;
+            if (passwordAttempts >= 3) {
+               cout << "Terlalu banyak percobaan password salah!\n";
+               attempts++;
+               cout << "Tekan Enter untuk melanjutkan...";
+               cin.ignore();
+               cin.get();
+               break;
+            }
+         }
+      }
+   }
+   
+   if (attempts >= 3) {
+      cout << "Terlalu banyak percobaan login gagal. Silakan coba lagi nanti.\n";
+   }
+   
    return false;
 }
